@@ -1,27 +1,39 @@
 <template>
   <WindowFrame
     :active
-    class="intermission-window">
-    <div
-      class="intermission"
-      :class="`intermission--${mode}`">
-      <span class="intermission__text">{{ intermissionText }}</span>
+    class="w-full">
+    <div class="aspect-video bg-[#121212] bg-center bg-no-repeat bg-cover rounded-sm overflow-hidden relative w-full">
+      <span
+        class="text-white block text-[60px] text-shadow-[0_0_10px_#000] w-full left-0 absolute right-0 z-1"
+        :class="[
+          {
+            'px-6 py-8 text-center top-0': ['break', 'start', undefined].includes(mode),
+            'py-7 pr-6 pl-[256px] top-1/2 -translate-y-1/2': mode === 'end',
+          },
+        ]"
+        :style="['break', 'start', undefined].includes(mode) ? { backgroundColor: startingSoonTextBackgroundColor } : undefined">
+        {{ intermissionText }}
+      </span>
       <template v-if="mode === 'start' && selectedTrailerData">
         <span
-          class="intermission__video-text"
-          :class="{ 'intermission__video-text--visible': isVideoTextVisible }">
+          class="rounded-sm bg-black/75 bottom-[200px] text-white text-2xl left-1/2 opacity-0 px-5 py-3 pointer-events-none absolute -translate-x-1/2 transition-opacity duration-1000 ease-in-out z-1"
+          :class="{ 'opacity-100': isVideoTextVisible }">
           {{ selectedTrailerData.title }}
         </span>
       </template>
       <img
         alt=""
-        class="intermission__image"
+        class="absolute"
+        :class="{
+          'animate-[intermission-scale-up-down_15s_ease-in-out_infinite_alternate] h-full object-cover w-full': ['break', 'start', undefined].includes(mode),
+          'animate-none bottom-0 h-auto left-0 opacity-25 w-[600px]': mode === 'end',
+        }"
         :src="startingSoonImage" />
       <video
         v-if="mode === 'start' && selectedTrailerData"
         ref="trailerVideoRef"
-        class="intermission__video"
-        :class="{ 'intermission__video--visible': isVideoVisible }"
+        class="h-full object-cover opacity-0 absolute w-full transition-opacity duration-1000 ease-in-out"
+        :class="{ 'opacity-100': isVideoVisible }"
         playsinline
         preload="auto"
         :src="selectedTrailerData.url" />
@@ -213,132 +225,17 @@ watch([() => props.mode, selectedTrailerData], () => {
 });
 </script>
 
-<style lang="scss" scoped>
-@import '@/assets/modern.variables';
-
-:global(body) {
-  overflow: hidden; // for some reason within OBS the body sometimes overflows without any reason
+<style>
+body {
+  overflow: hidden; /* for some reason within OBS the body sometimes overflows without any reason */
 }
 
-.intermission {
-  aspect-ratio: 16 / 9;
-  background-color: #121212;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: $window-frame-border-radius - $window-frame-padding;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-
-  &__image {
-    animation: scaleUpDown 15s ease-in-out infinite alternate;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    width: 100%;
-
-    @keyframes scaleUpDown {
-      0% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(1.05);
-      }
-    }
+@keyframes intermission-scale-up-down {
+  0% {
+    transform: scale(1);
   }
-
-  &__video {
-    animation: scaleUpDown 15s ease-in-out infinite alternate;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    position: absolute;
-    transition: opacity 1s ease-in-out;
-    width: 100%;
-
-    @keyframes scaleUpDown {
-      0% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(1.05);
-      }
-    }
-
-    &--visible {
-      opacity: 1;
-    }
+  100% {
+    transform: scale(1.05);
   }
-
-  &__text {
-    left: 0;
-    position: absolute;
-    right: 0;
-    z-index: 1;
-  }
-}
-
-.intermission--end {
-  .intermission__image {
-    animation: none;
-    bottom: 0;
-    height: auto;
-    left: 0;
-    opacity: .25;
-    width: 600px;
-  }
-
-  .intermission__text {
-    color: #fff;
-    display: block;
-    font-size: 60px;
-    padding: 32px 24px 32px 256px;
-    text-shadow: 0 0 10px #000;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-  }
-}
-
-.intermission--break,
-.intermission--start {
-  .intermission__text {
-    background-color: v-bind(startingSoonTextBackgroundColor);
-    color: #fff;
-    display: block;
-    font-size: 60px;
-    padding: 32px 24px;
-    text-align: center;
-    text-shadow: 0 0 10px #000;
-    top: 0;
-    width: 100%;
-  }
-}
-
-.intermission--start {
-  .intermission__video-text {
-    border-radius: $window-frame-border-radius - $window-frame-padding;
-    background-color: rgba(0, 0, 0, 0.75);
-    bottom: 200px;
-    color: #fff;
-    font-size: 24px;
-    left: 50%;
-    opacity: 0;
-    padding: 12px 20px;
-    pointer-events: none;
-    position: absolute;
-    transform: translateX(-50%);
-    transition: opacity 1s ease-in-out;
-    z-index: 1;
-
-    &--visible {
-      opacity: 1;
-    }
-  }
-}
-
-.intermission-window {
-  width: 100%;
 }
 </style>

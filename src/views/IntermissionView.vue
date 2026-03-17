@@ -1,9 +1,7 @@
 <template>
-  <section class="starting-soon-view">
-    <Intermission
-      :active
-      :mode />
-  </section>
+  <Intermission
+    :active
+    :mode />
 </template>
 
 <script lang="ts" setup>
