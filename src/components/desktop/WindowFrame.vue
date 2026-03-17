@@ -1,34 +1,38 @@
 <template>
   <div
-    class="window-frame"
-    :class="{ 'window-frame--active': active }">
+    class="bg-transparent rounded-lg border-[5px] border-white/75 flex flex-col relative transition-colors duration-500 ease-in-out"
+    :class="{ 'border-[rgba(170,204,0,0.75)]': active }">
     <slot></slot>
     <template v-if="title">
       <template v-if="iconPath">
-        <div class="window-frame__application-icon">
+        <div
+          class="aspect-square bg-white/75 rounded-br-lg rounded-tl-xs border-b-2 border-r-2 border-white/90 left-0 p-1 absolute top-0 transition-colors duration-500 ease-in-out"
+          :class="{ 'bg-[rgba(170,204,0,0.75)] border-[rgba(170,204,0,0.75)]': active }">
           <img
             :alt="title"
-            class="window-frame__application-icon-image"
+            class="aspect-square max-w-14"
             :src="iconPath" />
         </div>
       </template>
-      <div class="window-frame__bottom-bar">
+      <div
+        class="items-center bg-white/75 flex font-bold justify-between pt-1 pl-2 transition-colors duration-500 ease-in-out"
+        :class="{ 'bg-[rgba(170,204,0,0.75)]': active }">
         {{ title }}
-        <div class="window-frame__buttons">
+        <div class="flex flex-row gap-1.5 p-1">
           <button
-            class="window-frame__button"
+            class="appearance-none bg-transparent border-none p-0 mr-0.5"
             title="Minimize"
             type="button">
             <Minimize :size="16" />
           </button>
           <button
-            class="window-frame__button"
+            class="appearance-none bg-transparent border-none p-0"
             title="Maximize"
             type="button">
             <Maximize :size="16" />
           </button>
           <button
-            class="window-frame__button"
+            class="appearance-none bg-transparent border-none p-0"
             title="Close"
             type="button">
             <X :size="16" />
@@ -44,78 +48,3 @@ import { Maximize, Minimize, X } from 'lucide-vue-next';
 
 const { active = false, iconPath, title } = defineProps<{ active?: boolean; iconPath?: string; title?: string }>();
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/modern.variables';
-
-.window-frame {
-  background-color: transparent;
-  border-radius: $window-frame-border-radius;
-  border: 5px solid rgba(255, 255, 255, 0.75);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
-
-  &__application-icon {
-    aspect-ratio: 1;
-    background-color: rgba(255, 255, 255, 0.75);
-    border-bottom-right-radius: $window-frame-border-radius;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.9);
-    border-right: 2px solid rgba(255, 255, 255, 0.9);
-    border-top-left-radius: 2px;
-    left: 0;
-    padding: $window-frame-padding;
-    position: absolute;
-    top: 0;
-    transition: background-color 0.5s ease-in-out, border-color 0.5s ease-in-out;
-  }
-
-  &__application-icon-image {
-    aspect-ratio: 1;
-    max-width: 56px;
-  }
-
-  &__bottom-bar {
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.75);
-    display: flex;
-    font-weight: 700;
-    justify-content: space-between;
-    padding: $window-frame-padding 0 0 $window-frame-padding * 2;
-    transition: background-color 0.5s ease-in-out;
-  }
-
-  &__button {
-    appearance: none;
-    background-color: transparent;
-    border: none;
-    display: flex;
-    padding: 0;
-  }
-
-  &__button:first-of-type {
-    margin-right: 2px;
-  }
-
-  &__buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 6px;
-    padding: $window-frame-padding;
-  }
-}
-
-.window-frame--active {
-  border-color: rgba(170, 204, 0, 0.75);
-
-  .window-frame__application-icon {
-    background-color: rgba(170, 204, 0, 0.75);
-    border-color: rgba(170, 204, 0, 0.75);
-  }
-
-  .window-frame__bottom-bar {
-    background-color: rgba(170, 204, 0, 0.75);
-  }
-}
-</style>
