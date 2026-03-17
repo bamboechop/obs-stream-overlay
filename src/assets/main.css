@@ -1,36 +1,19 @@
-@import 'tailwindcss';
+ @import 'tailwindcss';
 
 :root {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1;
-
-  color: #000;
-  background-color: var(--background-color);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-}
-
 .v-enter-active,
 .v-leave-active {
-  transition: opacity .5s ease;
+  @apply transition-opacity duration-500 ease-in-out;
 }
 
 .v-enter-from,
 .v-leave-to {
-  opacity: 0;
+  @apply opacity-0;
 }
 
