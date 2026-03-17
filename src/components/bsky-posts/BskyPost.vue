@@ -1,6 +1,6 @@
 <template>
-  <div class="bsky-post">
-    <div class="bsky-post__text">
+  <div class="bg-white rounded-t-sm fley flex-col">
+    <div class="text-base p-2 whitespace-pre-line">
       {{ post.text }}
     </div>
 
@@ -12,19 +12,19 @@
 
     <template v-else-if="post.type === 'external'">
       <div
-        class="bsky-post__external"
-        :class="{ 'bsky-post__external--has-thumb': post.external.thumb }">
+        class="relative"
+        :class="{ 'object-cover w-full aspect-video': post.external.thumb }">
         <img
           v-if="post.external.thumb"
           :src="post.external.thumb"
-          class="bsky-post__external-thumb"
+          class="object-cover w-full aspect-video"
           :alt="post.external.title" />
-        <div class="bsky-post__external-content">
-          <div class="bsky-post__external-title">
+        <div class="bg-black/50 bottom-0 text-white flex flex-col gap-1 left-0 p-3 right-0" :class="{ 'absolute': post.external.thumb }">
+          <div class="text-base font-semibold">
             {{ post.external.title }}
           </div>
           <template v-if="post.external.description">
-            <div class="bsky-post__external-description">
+            <div class="text-sm">
               {{ post.external.description }}
             </div>
           </template>
@@ -39,56 +39,3 @@ import type { BlueskyPost } from '@/composables/bluesky.composable';
 
 defineProps<{ post: BlueskyPost }>();
 </script>
-
-<style lang="scss" scoped>
-.bsky-post {
-  background: #fff;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  display: flex;
-  flex-direction: column;
-
-  &__external {
-    position: relative;
-  }
-
-  &__external--has-thumb {
-    .bsky-post__external-content {
-      position: absolute;
-    }
-  }
-
-  &__external-content {
-    background-color: rgba(0, 0, 0, 0.5);
-    bottom: 0;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    left: 0;
-    padding: 12px;
-    right: 0;
-  }
-
-  &__external-description {
-    font-size: 14px;
-  }
-
-  &__external-thumb {
-    object-fit: cover;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-  }
-
-  &__external-title {
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  &__text {
-    font-size: 16px;
-    padding: 8px;
-    white-space: pre-line;
-  }
-}
-</style>

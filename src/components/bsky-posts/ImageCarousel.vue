@@ -1,18 +1,18 @@
 <template>
   <Splide
-    ref="splideRef"
     :options="splideOptions"
-    class="bsky-image-carousel"
+    class="bg-[#1a1a1d] overflow-hidden transition-all duration-400 ease-in-out"
     :style="{ height: `${currentHeight}px` }"
     @splide:moved="onSlideChange">
     <SplideSlide
       v-for="(img, idx) in images"
-      :key="img + idx">
+      :key="img + idx"
+      class="text-center">
       <img
         :ref="el => imageRefs[idx] = el as HTMLImageElement"
         :src="img"
         alt=""
-        class="bsky-image-carousel__img"
+        class="max-w-full h-auto block mx-auto"
         @load="onImageLoad(idx)" />
     </SplideSlide>
   </Splide>
@@ -27,7 +27,6 @@ import { computed, nextTick, onMounted, ref } from 'vue';
 import '@splidejs/vue-splide/css/core';
 
 defineProps<{ images: string[] }>();
-const splideRef = ref();
 const imageRefs = ref<(HTMLImageElement | null)[]>([]);
 const currentHeight = ref(0);
 const currentSlideIndex = ref(0);
@@ -72,18 +71,3 @@ onMounted(async () => {
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.bsky-image-carousel {
-  background-color: #1a1a1d;
-  overflow: hidden;
-  transition: height 0.4s ease-in-out;
-
-  &__img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-}
-</style>

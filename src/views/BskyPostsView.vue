@@ -1,7 +1,5 @@
 <template>
-  <section class="bsky-posts-view">
-    <BskyPostsWindow :active />
-  </section>
+  <BskyPostsWindow :active />
 </template>
 
 <script setup lang="ts">
@@ -15,12 +13,3 @@ const { activeProgramId } = storeToRefs(applicationStore);
 
 const active = computed(() => activeProgramId.value === 'bsky-posts');
 </script>
-
-<style scoped lang="scss">
-.bsky-posts-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-}
-</style>

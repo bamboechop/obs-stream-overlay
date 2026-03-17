@@ -2,16 +2,19 @@
   <template v-if="posts.length > 0">
     <WindowFrame
       :active
-      class="bsky-posts-window"
+      class="w-full opacity-100 transition-opacity duration-500 ease-in-out"
       :class="{ 
-        'bsky-posts-window--collapsed': isCollapsed,
-        'bsky-posts-window--faded': intermissionVideoPlaying
+        'opacity-0': intermissionVideoPlaying
       }">
       <div
-        class="bsky-posts-window__content">
+        class="bg-white grid transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden min-w-0"
+        :class="{
+          'grid-rows-[0fr]': isCollapsed,
+          'grid-rows-[1fr]': !isCollapsed,
+        }">
         <div
           :key="currentIndex"
-          class="bsky-posts-window__post">
+          class="overflow-hidden">
           <BskyPost :post="currentPost">
             <template #carousel="{ images }">
               <ImageCarousel :images="images" />
@@ -21,7 +24,8 @@
       </div>
       <div
         v-if="authorHandle"
-        class="bsky-posts-window__follow-cta">
+        class="bg-[#1887f2] rounded-b-sm text-white text-base font-semibold tracking-wide p-3 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]"
+        :class="{ 'rounded-t-sm': isCollapsed }">
         Folge @{{ authorHandle }} auf Bluesky
       </div>
     </WindowFrame>
@@ -50,9 +54,6 @@ const TRANSITION_DURATION = 500; // ms, should match CSS - TODO ask AI if we can
 
 const currentPost = computed(() => posts.value[currentIndex.value]);
 const authorHandle = computed(() => {
-  if (posts.value.length > 0 && posts.value[0].author) {
-    return posts.value[0].author;
-  }
   return import.meta.env.VITE_BSKY_TARGET_HANDLE || '';
 });
 
@@ -101,63 +102,7 @@ onMounted(async () => {
 });
 
 watch(posts, () => {
-  // stopCycling();
-  // startCycling();
+  stopCycling();
+  startCycling();
 });
 </script>
-
-<style scoped lang="scss">
-:global(body) {
-  background: saddlebrown;
-}
-
-.bsky-posts-window {
-  width: 100%;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-
-  &__content {
-    background-color: #fff;
-    display: grid;
-    grid-template-rows: 1fr;
-    transition: grid-template-rows .3s cubic-bezier(0.4,0,0.2,1);
-    overflow: hidden;
-    min-width: 0;
-  }
-
-  &__post {
-    overflow: hidden;
-  }
-
-  &__follow-cta {
-    background: #1877f2;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 12px;
-    transition: border-top-left-radius .3s cubic-bezier(0.4,0,0.2,1), border-top-right-radius .3s cubic-bezier(0.4,0,0.2,1), margin-top .3s cubic-bezier(0.4,0,0.2,1);
-  }
-
-  :deep(.splide__slide) {
-    text-align: center;
-  }
-}
-
-.bsky-posts-window--collapsed {
-  .bsky-posts-window__content {
-    grid-template-rows: 0fr;
-  }
-
-  .bsky-posts-window__follow-cta {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
-}
-
-.bsky-posts-window--faded {
-  opacity: 0;
-}
-</style>
