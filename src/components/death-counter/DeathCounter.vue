@@ -60,18 +60,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-@font-face {
-  font-display: swap;
-  font-family: 'Round Corner Font Regular';
-  src: url("/fonts/RoundCornerFont/RoundCornerFont.eot?") format('eot'),
-       url("/fonts/RoundCornerFont/RoundCornerFont.woff") format('woff'),
-       url("/fonts/RoundCornerFont/RoundCornerFont.ttf") format('truetype'),
-       url("/fonts/RoundCornerFont/RoundCornerFont.svg#RoundCornerFont-Regular") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
+<style scoped>
 .slide-up-and-fade-enter-active,
 .slide-up-and-fade-leave-active {
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -82,3 +71,21 @@ onUnmounted(() => {
   opacity: 0;
 }
 </style>
+
+<style>
+@keyframes escape-from-duckov-death-counter-scale {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.025);
+  }
+  50% {
+    transform: scale(0.975);
+  }
+  75% {
+    transform: scale(1.025);
+  }
+}
+</style>
+
