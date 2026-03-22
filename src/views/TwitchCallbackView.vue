@@ -1,5 +1,5 @@
 <template>
-  <main class="twitch-callback-view">
+  <main class="flex items-center justify-center h-screen">
     <p>{{ statusMessage }}</p>
   </main>
 </template>
@@ -22,12 +22,3 @@ onMounted(async () => {
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.twitch-callback-view {
-  align-items: center;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-}
-</style>
