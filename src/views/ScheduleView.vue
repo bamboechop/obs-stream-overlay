@@ -1,5 +1,5 @@
 <template>
-  <section class="schedule-view">
+  <section class="items-center flex h-full justify-center">
     <Schedule :active />
   </section>
 </template>
@@ -15,12 +15,3 @@ const { activeProgramId } = storeToRefs(applicationStore);
 
 const active = computed(() => activeProgramId.value === 'schedule');
 </script>
-
-<style scoped lang="scss">
-  .schedule-view {
-    align-items: center;
-    display: flex;
-    height: 100%;
-    justify-content: center;
-  }
-</style>

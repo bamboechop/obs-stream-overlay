@@ -1,13 +1,13 @@
 <template>
   <WindowFrame
     :active="active"
-    class="schedule-window"
+    class="w-max"
     :icon-path="programInformation['schedule'].iconPath"
     title="Streamplan">
-    <div class="schedule">
+    <div class="bg-[#0e0e10] rounded-sm text-white pt-[39px]">
       <img
         alt="Streamplan"
-        class="schedule-image"
+        class="rounded-sm block zoom-375"
         src="https://bamboechop.at/schedule.png" />
     </div>
   </WindowFrame>
@@ -22,23 +22,8 @@ defineProps<{ active?: boolean }>();
 const { programInformation } = useProgramInformationComposable();
 </script>
 
-<style lang="scss" scoped>
-@import '@/assets/modern.variables';
-
-.schedule {
-  background-color: #0e0e10;
-  border-radius: $window-frame-border-radius - $window-frame-padding;
-  color: #fff;
-  padding-top: 39px;
-}
-
-.schedule-image {
-  border-radius: $window-frame-border-radius - $window-frame-padding;
-  display: block;
+<style scoped>
+.zoom-375 {
   zoom: 0.375;
-}
-
-.schedule-window {
-  width: max-content;
 }
 </style>
