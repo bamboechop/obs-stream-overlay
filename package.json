@@ -16,7 +16,7 @@
   "dependencies": {
     "@atproto/api": "^0.19.4",
     "@splidejs/vue-splide": "^0.6.12",
-    "@tailwindcss/vite": "^0.0.0-insiders.f302fce",
+    "@tailwindcss/vite": "^4.2.2",
     "@vueuse/core": "^14.2.1",
     "axios": "^1.13.6",
     "lucide-vue-next": "^0.577.0",
@@ -24,7 +24,7 @@
     "pinia": "^3.0.4",
     "pinia-shared-state": "^1.0.1",
     "sass-migrator": "^2.5.7",
-    "tailwindcss": "^0.0.0-insiders.f302fce",
+    "tailwindcss": "^4.2.2",
     "tmi-utils": "^1.0.1",
     "tmi.js": "^1.8.5",
     "vue": "^3.5.30",
