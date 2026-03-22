@@ -1,14 +1,15 @@
 <template>
-  <div class="on-screen-celebration">
-    <TransitionGroup name="float">
+  <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+    <TransitionGroup name="on-screen-celebration-float">
       <div
         v-for="emote in activeEmotes"
         :key="emote.id"
-        class="floating-emote"
+        class="absolute transition-all ease-[cubic-bezier(0.23, 1, 0.32, 1)] will-change-transform"
         :style="emote.style">
         <img
-          :src="emote.src"
-          :alt="emote.name" />
+          :alt="emote.name"
+          class="w-full h-full object-contain"
+          :src="emote.src" />
       </div>
     </TransitionGroup>
   </div>
@@ -128,39 +129,17 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.on-screen-celebration {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
+<style scoped>
+.on-screen-celebration-float-enter-active {
+  animation: on-screen-celebration-float-up var(--duration) cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.floating-emote {
-  position: absolute;
-  transition: all var(--duration) cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-}
-
-.float-enter-active {
-  animation: float-up var(--duration) cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.float-leave-active {
+.on-screen-celebration-float-leave-active {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
-@keyframes float-up {
+@keyframes on-screen-celebration-float-up {
   0% {
     transform: translateY(0) translateX(0);
   }
