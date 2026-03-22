@@ -1,12 +1,12 @@
 <template>
   <WindowFrame
     :active="active"
-    class="pdf-viewer-window"
+    class="w-full"
     :icon-path="programInformation['pdf-viewer'].iconPath"
     title="PDF Viewer">
     <div
-      class="pdf-viewer"
-      :class="{ 'pdf-viewer--placeholder': !url }">
+      class="rounded-sm h-[calc(100vh-38px)] overflow-auto scrollbar-hidden"
+      :class="{ 'bg-[url(/modern/pdf-viewer/placeholder.jpg)] bg-center bg-no-repeat bg-cover': !url }">
       <template v-if="url">
         <PdfEmbed
           :source="decodeURIComponent(url)"
@@ -33,28 +33,12 @@ function handleError(error: Error) {
 }
 </script>
 
-<style lang="scss" scoped>
-@import '@/assets/modern.variables';
+<style scoped>
+.scrollbar-hidden {
+  scrollbar-width: none;
 
-.pdf-viewer {
-  border-radius: $window-frame-border-radius - $window-frame-padding;
-  height: calc(100vh - 38px); // subtract the height of the .window-frame__bottom-bar
-  overflow: auto;
-  scrollbar-width: none;  // Hide scrollbar for Firefox
-
-  &::-webkit-scrollbar { // Hide scrollbar for Chrome, Safari and Opera
+  &::-webkit-scrollbar {
     display: none;
   }
-}
-
-.pdf-viewer--placeholder {
-  background-image: url('/modern/pdf-viewer/placeholder.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.pdf-viewer-window {
-  width: 100%;
 }
 </style>
