@@ -1,32 +1,32 @@
 <template>
-  <transition name="poll-window-slide">
+  <Transition name="poll-window-slide">
     <div
       v-if="currentPoll"
-      class="poll-window">
-      <div class="poll-window-container">
-        <aside class="poll-window-aside">
-          <div class="poll-window-aside__stat">
+      class="bg-[linear-gradient(90deg,rgba(34,34,34,0.9)_0%,rgba(34,34,34,0.9)_83%,rgba(34,34,34,0)_100%)] border-b text-white flex flex-col gap-3 h-full pt-[18px] px-3 pb-6 w-[25vw]">
+      <div class="flex flex-col gap-1 max-w-[20vw] w-full">
+        <aside class="self-end gap-3 flex flex-row opacity-80">
+          <div class="items-end gap-1 flex flex-row text-sm justify-end">
             {{ amountOfVotes }}
             <Users :size="16" />
           </div>
-          <div class="poll-window-aside__stat">
+          <div class="items-end gap-1 flex flex-row text-sm justify-end">
             {{ displayTime }}
             <Timer :size="16" />
           </div>
         </aside>
 
-        <header class="poll-window-header">
+        <header class="items-start gap-1.5 grid grid-cols-[18px_1fr]">
           <Component
             :is="pollStatusIcon"
-            class="poll-window-header__icon"
+            class="mt-1"
             :size="18" />
-          <h1 class="poll-window-header__title">
+          <h1 class="text-lg font-semibold leading-5 m-0">
             {{ currentPoll.title }}
           </h1>
         </header>
 
         <div
-          class="poll-window__options"
+          class="flex flex-col gap-3 mt-5"
           :class="optionsClasses">
           <PollOption
             v-for="choice in currentPoll.choices"
@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <script lang="ts" setup>
@@ -399,69 +399,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.poll-window {
-  background-image: linear-gradient(90deg,rgba(34, 34, 34, 0.9) 0%, rgba(34, 34, 34, 0.9) 83%, rgba(34, 34, 34, 0) 100%);
-  border-bottom-width: 1px;
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  height: 100%;
-  padding: 18px 12px 24px 12px;
-  width: 25vw;
-}
-
-.poll-window-aside {
-  align-self: end;
-  column-gap: 12px;
-  display: flex;
-  flex-direction: row;
-  opacity: 0.8;
-
-  &__stat {
-    align-items: end;
-    column-gap: 4px;
-    display: flex;
-    flex-direction: row;
-    font-size: 14px;
-    justify-content: end;
-  }
-}
-
-.poll-window-container {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  max-width: 20vw;
-  width: 100%;
-}
-
-.poll-window-header {
-  align-items: start;
-  column-gap: 6px;
-  display: grid;
-  grid-template-columns: 18px 1fr;
-
-  &__icon {
-    margin-top: 4px;
-  }
-
-  &__title {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 1.25;
-    margin: 0;
-  }
-}
-
-.poll-window__options {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
-}
-
+<style scoped>
 .poll-window-slide-enter-active,
 .poll-window-slide-leave-active {
   transition: transform 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.5s cubic-bezier(0.4,0,0.2,1);
