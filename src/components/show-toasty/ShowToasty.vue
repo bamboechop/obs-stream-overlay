@@ -1,12 +1,12 @@
 <template>
   <Transition name="fade">
     <template v-if="imageLoaded">
-      <div class="show-toasty">
+      <div class="items-center bottom-0 flex justify-center left-0 absolute right-0 top-0">
         <img
           alt=""
-          class="show-toasty__avatar"
+          class="max-h-[512px] filter-[drop-shadow(0_0_20px_#000)_drop-shadow(0_0_40px_#000)]"
+          :class="[imageLoaded ? 'opacity-100' : 'opacity-0']"
           :src="userImage"
-          :style="{ opacity: imageLoaded ? 1 : 0 }"
         />
       </div>
     </template>
@@ -102,23 +102,7 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.show-toasty {
-  align-items: center;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-
-  &__avatar {
-    filter: drop-shadow(0 0 20px #000) drop-shadow(0 0 40px #000);
-    max-height: 512px;
-  }
-}
-
+<style scoped>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
