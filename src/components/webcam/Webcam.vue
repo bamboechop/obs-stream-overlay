@@ -1,10 +1,15 @@
 <template>
   <WindowFrame
     :active
-    class="webcam-window"
+    class="rounded-tr-sm max-w-[1920px]"
     :icon-path="programInformation.webcam.iconPath"
     :title="title ?? 'Webcam'">
-    <div class="webcam"></div>
+    <div
+      class="rounded-b-sm rounded-t-xs w-full"
+      :class="{
+        'aspect-square': aspectRatio === '1' || aspectRatio === '1:1' || aspectRatio === '1/1',
+        'aspect-video': aspectRatio === '16:9' || aspectRatio === '16/9',
+      }"></div>
   </WindowFrame>
 </template>
 
@@ -20,23 +25,3 @@ defineProps<{
 
 const { programInformation } = useProgramInformationComposable();
 </script>
-
-<style lang="scss" scoped>
-@use 'sass:math';
-
-@import '@/assets/modern.variables';
-
-.webcam {
-  aspect-ratio: v-bind(aspectRatio);
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-  border-top-left-radius: 2px;
-  border-top-right-radius: 2px;
-  width: 100%;
-}
-
-.webcam-window {
-  border-top-right-radius: calc($window-frame-border-radius - $window-frame-padding);
-  max-width: 1920px;
-}
-</style>
