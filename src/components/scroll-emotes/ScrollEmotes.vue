@@ -1,50 +1,52 @@
 <template>
   <ul
     ref="listRef"
-    class="scroll-emotes"
-    :class="{ 'scroll-emotes--faded': intermissionVideoPlaying }">
+    class="flex flex-row items-end gap-2.5 list-none m-0 p-0 will-change-transform transition-opacity duration-500 ease-in-out"
+    :class="[intermissionVideoPlaying ? 'opacity-0' : 'opacity-100']">
     <li
       v-for="(emote, index) in [...EMOTES, ...EMOTES, ...EMOTES]"
       :key="`${emote.name}-${index}`"
-      class="scroll-emote-container">
+      class="flex flex-col shrink-0 max-w-32 relative">
       <img
         :alt="emote.name"
-        class="scroll-emote"
+        class="aspect-square w-full shrink-0"
         :src="emote.url" />
       <template v-if="emote.new">
-        <span class="scroll-emote-new">New</span>
+        <span class="bg-[#c91c1c] text-white font-black text-xs px-2 py-1 absolute right-0 top-0 text-shadow-[0_0_10px_#000] uppercase rotate-30 z-1">New</span>
       </template>
       <template v-if="emote.updated">
-        <span class="scroll-emote-updated">Updated</span>
+        <span class="bg-[#1c53c9] text-white font-black text-xs px-2 py-1 absolute right-0 top-2.5 text-shadow-[0_0_10px_#000] uppercase rotate-30 z-1">Updated</span>
       </template>
-      <div class="scroll-emote-icons">
+      <div class="bg-black text-white flex flex-row gap-1 justify-center p-1 pb-0">
         <template v-if="emote.tier === 'follower'">
           <Heart
-            class="scroll-emote-icon scroll-emote-icon--follower"
+            class="text-[#d81515] fill-[#d81515]"
             :size="16" />
         </template>
         <template v-if="emote.tier === '1' || emote.tier === '2' || emote.tier === '3'">
           <Star
-            class="scroll-emote-icon scroll-emote-icon--star"
+            class="text-[#f3d113] fill-[#f3d113]"
             :size="16" />
         </template>
         <template v-if="emote.tier === '2' || emote.tier === '3'">
           <Star
-            class="scroll-emote-icon scroll-emote-icon--star"
+            class="text-[#f3d113] fill-[#f3d113]"
             :size="16" />
         </template>
         <template v-if="emote.tier === '3'">
           <Star
-            class="scroll-emote-icon scroll-emote-icon--star"
+            class="text-[#f3d113] fill-[#f3d113]"
             :size="16" />
         </template>
       </div>
       <span
-        class="scroll-emote-name"
-        :class="{ 'scroll-emote-name--marquee': hasMarquee(index) }"
+        class="bg-black text-white text-xs font-semibold tracking-[0.5px] overflow-hidden px-2 py-1 text-center"
+        :class="{ 'text-clip': hasMarquee(index) }"
         :style="getMarqueeStyle(index)"
         :ref="(el) => setNameRef(el as HTMLElement | null, index)">
-        <span class="scroll-emote-name-text">{{ emote.name }}</span>
+        <span
+          class="inline-block min-w-full"
+          :class="{ 'animate-[scroll-emote-marquee_var(--marquee-duration,6s)_linear_infinite_alternate] min-w-max text-left will-change-transform': hasMarquee(index) }">{{ emote.name }}</span>
       </span>
     </li>
   </ul>
@@ -156,109 +158,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.scroll-emotes {
-  align-items: end;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  will-change: transform;
-  opacity: 1;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.scroll-emotes--faded {
-  opacity: 0;
-}
-
-.scroll-emote {
-  aspect-ratio: 1 / 1;
-  width: 128px;
-  flex-shrink: 0;
-}
-
-.scroll-emote-icon--follower {
-  color: #d81515;
-  fill: #d81515;
-}
-
-.scroll-emote-icon--star {
-  color: #f3d113;
-  fill: #f3d113;
-}
-
-.scroll-emote-icons {
-  background-color: #000;
-  color: #fff;
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-  justify-content: center;
-  padding: 4px 4px 0 4px;
-}
-
-.scroll-emote-new,
-.scroll-emote-updated {
-  color: #fff;
-  font-weight: 900;
-  font-size: 12px;
-  padding: 4px 8px;
-  position: absolute;
-  right: 0;
-  text-shadow: #000 1px 0 10px;
-  text-transform: uppercase;
-  transform: rotate(30deg);
-  z-index: 1;
-}
-
-.scroll-emote-new {
-  background-color: #c91c1c;
-  top: 0;
-}
-
-.scroll-emote-updated {
-  background-color: #1c53c9;
-  top: 10px;
-}
-
-.scroll-emote-container {
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  max-width: 128px;
-  position: relative;
-}
-
-.scroll-emote-name {
-  background-color: #000;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  overflow: hidden;
-  padding: 4px 8px;
-  text-align: center;
-}
-
-.scroll-emote-name-text {
-  display: inline-block;
-  min-width: 100%;
-}
-
-.scroll-emote-name--marquee {
-  text-overflow: clip;
-}
-
-.scroll-emote-name--marquee .scroll-emote-name-text {
-  animation: scroll-emote-marquee var(--marquee-duration, 6s) linear infinite alternate;
-  min-width: max-content;
-  text-align: left;
-  will-change: transform;
-}
-
+<style>
 @keyframes scroll-emote-marquee {
   from {
     transform: translateX(0);
