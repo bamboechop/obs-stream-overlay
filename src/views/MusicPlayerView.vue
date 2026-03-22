@@ -1,5 +1,5 @@
 <template>
-  <section class="music-player-view">
+  <section class="h-screen w-screen relative overflow-hidden">
     <MusicPlayer />
   </section>
 </template>

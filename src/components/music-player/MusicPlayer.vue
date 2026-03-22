@@ -1,36 +1,36 @@
 <template>
   <div
-    class="music-player"
-    :class="{ 'music-player--visible': isVisible }">
+    class="flex gap-2 h-[100px] opacity-0 transition-all duration-500 ease-in-out"
+    :class="{ 'opacity-100': isVisible }">
     <template v-if="!hideAlbumArt && currentTrack.albumArt">
       <img
         :alt="`Album art for ${currentTrack.name} by ${currentTrack.artist}`"
-        class="music-player__album-art"
+        class="aspect-square rounded-[10px] shrink-0 object-cover overflow-hidden w-[100px]"
         :src="currentTrack.albumArt" />
     </template>
-    <div class="music-player__song-info-box">
+    <div class="text-white relative text-shadow-[2px_2px_2px_rgba(0,0,0,0.5)] w-full">
       <template v-if="currentTrack.albumArt">
-        <div class="music-player__background-art">
+        <div class="rounded-[10px] h-full opacity-90 overflow-hidden absolute w-full">
           <img
             alt=""
-            class="music-player__background-image"
+            class="blur-[20px] left-1/2 absolute top-1/2 -translate-1/2 w-[140%]"
             :src="currentTrack.albumArt" />
         </div>
       </template>
-      <div class="music-player__song-info">
-        <div class="music-player__song-name">
+      <div class="bg-black/35 rounded-[10px] flex flex-col h-full justify-center px-5 relative">
+        <div class="text-[20px] font-bold leading-normal overflow-hidden text-ellipsis whitespace-nowrap w-full">
           {{ currentTrack.name }}
         </div>
-        <div class="music-player__song-artist">
+        <div class="text-sm font-normal leading-normal overflow-hidden text-ellipsis w-full whitespace-nowrap">
           {{ currentTrack.artist }}
         </div>
-        <div class="music-player__times">
+        <div class="flex flex-row text-sm font-bold justify-between">
           <span>{{ formatTime(currentTrack.currentPlaybackTime) }}</span>
           <span>-{{ formatTime(currentTrack.currentPlaybackTimeRemaining) }}</span>
         </div>
-        <div class="music-player__progress">
+        <div class="bg-[#1f1f1f] rounded-full mt-1.5">
           <div
-            class="music-player__progress-bar"
+            class="music-player__progress-bar bg-white rounded-full h-1.5 transition-all duration-500 ease-linear"
             :style="{ width: `${progressPercentage}%` }"></div>
         </div>
       </div>
@@ -144,116 +144,3 @@ onMounted(() => {
   });
 });
 </script>
-
-<style lang="scss" scoped>
-.music-player {
-  --corner-radius: 10px;
-  --album-art-size: 100px;
-
-  column-gap: 8px;
-  display: flex;
-  height: var(--album-art-size);
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-
-  &__album-art {
-    aspect-ratio: 1;
-    border-radius: var(--corner-radius);
-    flex-shrink: 0;
-    object-fit: cover;
-    overflow: hidden;
-    width: var(--album-art-size);
-  }
-
-  &__background-art {
-    border-radius: var(--corner-radius);
-    height: 100%;
-    opacity: 0.9;
-    overflow: hidden;
-    position: absolute;
-    width: 100%;
-  }
-
-  &__background-image {
-    filter: blur(20px);
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 140%;
-  }
-
-  &__background-image-back {
-    filter: blur(20px);
-    position: absolute;
-    width: 140%;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: -1;
-  }
-
-  &__progress {
-    background-color: #1F1F1F;
-    border-radius: 9999px;
-    margin-top: 6px;
-  }
-
-  &__progress-bar {
-    background-color: #ffffff;
-    border-radius: 9999px;
-    height: 6px;
-    transition: width .5s ease;
-  }
-
-  &__song-artist {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-    white-space: nowrap;
-  }
-
-  &__song-name {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.5;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    width: 100%;
-  }
-
-  &__song-info {
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: var(--corner-radius);
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    padding: 0px 20px;
-    position: relative;
-  }
-
-  &__song-info-box {
-    color: white;
-    position: relative;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-    width: 100%;
-  }
-
-  &__times {
-    display: flex;
-    flex-direction: row;
-    font-size: 14px;
-    font-weight: 700;
-    justify-content: space-between;
-  }
-}
-
-.music-player--visible {
-  opacity: 1;
-}
-</style>
