@@ -1,7 +1,7 @@
 <template>
   <section
-    class="timer-view"
-    :class="{ 'timer-view--visible': totalSeconds > 0 }">
+    class="bg-black/50 rounded-bl-2xl rounded-tl-2xl ml-auto opacity-0 p-4 pl-6 pointer-events-none transition-opacity duration-300 ease-in-out select-none w-max"
+    :class="{ 'opacity-100': totalSeconds > 0 }">
     <Timer
       ref="timerElement"
       :total-seconds />
@@ -38,22 +38,3 @@ onMounted(() => {
   });
 });
 </script>
-
-<style lang="scss" scoped>
-.timer-view {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-bottom-left-radius: 16px;
-  border-top-left-radius: 16px;
-  margin-left: auto;
-  opacity: 0;
-  padding: 16px;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-  user-select: none;
-  width: max-content;
-
-  &--visible {
-    opacity: 1;
-  }
-}
-</style>

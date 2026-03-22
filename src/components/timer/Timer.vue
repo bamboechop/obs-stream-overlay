@@ -1,14 +1,14 @@
 <template>
-  <div class="timer">
+  <div class="text-white flex font-doto font-semibold text-7xl text-shadow-[0_0_10px_#000]">
     <template v-if="totalSeconds >= 3600">
-      <span class="timer__hours">{{ hours }}</span>
-      <span class="timer__colon">:</span>
+      <span>{{ hours }}</span>
+      <span class="text-6xl -mt-0.5">:</span>
     </template>
     <template v-if="totalSeconds >= 60">
-      <span class="timer__minutes">{{ minutes }}</span>
-      <span class="timer__colon">:</span>
+      <span>{{ minutes }}</span>
+      <span class="text-6xl -mt-0.5">:</span>
     </template>
-    <span class="timer__seconds">{{ seconds }}</span>
+    <span>{{ seconds }}</span>
   </div>
 </template>
 
@@ -80,19 +80,3 @@ defineExpose({
   start,
 });
 </script>
-
-<style lang="scss" scoped>
-.timer {
-  color: #fff;
-  display: flex;
-  font-family: 'Doto', sans-serif;
-  font-size: 72px;
-  font-weight: 600;
-  text-shadow: 0 0 10px #000;
-
-  &__colon {
-    font-size: 62px;
-    margin-top: -2px;
-  }
-}
-</style>
