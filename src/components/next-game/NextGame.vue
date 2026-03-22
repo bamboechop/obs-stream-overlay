@@ -1,51 +1,50 @@
 <template>
   <WindowFrame
     :active="active"
-    class="next-game-window"
     :icon-path="programInformation['next-game'].iconPath"
     title="Nächstes Spiel">
-    <div class="next-game">
-      <p class="next-game__description">
+    <div class="bg-[#0e0e10] rounded-sm text-white flex flex-col text-base gap-3 leading-normal pt-[78px] pb-3 px-6 relative">
+      <p>
         Ich besitze eine Steam Bibliothek mit über 680 Spielen. Davon sind über 400 Spiele bis heute ungespielt. Das ändert sich ab sofort.<br />
         Der Zufall entscheidet, welches Spiel wir als nächstes gemeinsam im Stream spielen.
       </p>
-      <h2 class="next-game__heading">
+      <h2>
         Die Regeln
       </h2>
-      <ul class="next-game__list">
-        <li class="next-game__list-item">
+      <ul class="text-sm pl-6 list-[square]">
+        <li>
           Jedes Spiel wird zufällig ausgewählt.
         </li>
-        <li class="next-game__list-item">
+        <li>
           Jedes gewählte Spiel wird zumindest für eine Stunde im Stream gespielt.
         </li>
       </ul>
-      <h2 class="next-game__heading">
+      <h2>
         Kategorie
       </h2>
-      <div class="next-game__categories">
+      <div>
         <FlipText
           ref="categoryFlipText"
           :words="categories"
           @word-selected="handleCategorySelected" />
       </div>
-      <h2 class="next-game__heading">
+      <h2>
         Spiel
       </h2>
-      <div class="next-game__categories">
+      <div>
         <FlipText
           ref="gameFlipText"
           :words="games"
           @word-selected="handleGameSelected" />
       </div>
-      <p class="next-game__credits">
+      <p class="text-xs text-right">
         Idee inspiriert von unstablesparkey und seinen "Steam Roulette" Reels auf Instagram.
       </p>
       <div
-        class="next-game__overlay"
-        :class="{ 'next-game__overlay--visible': selectedGame }">
+        class="items-center bg-black/85 rounded-sm bottom-0 text-[#dedede] flex flex-col text-2xl gap-6 justify-center left-0 opacity-0 p-6 pointer-events-none absolute right-0 text-center transition-opacity duration-300 ease-in-out top-0 z-10"
+        :class="{ 'opacity-100': selectedGame }">
         Gewonnen hat
-        <p class="next-game__selected-game">
+        <p class="text-white font-doto text-5xl font-bold">
           {{ selectedGame }}!
         </p>
         Zur Auswahl standen: {{ games.join(', ') }}.
@@ -152,79 +151,3 @@ onMounted(() => {
   });
 });
 </script>
-
-<style lang="scss" scoped>
-@import '@/assets/modern.variables';
-
-  .next-game {
-    background-color: #0e0e10;
-    border-radius: $window-frame-border-radius - $window-frame-padding;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    font-size: 16px;
-    gap: 12px;
-    line-height: 1.5;
-    padding: 78px 24px 12px 24px;
-    position: relative;
-
-    &__credits {
-      font-size: 12px;
-      margin: 0;
-      text-align: right;
-    }
-
-    &__description {
-      margin: 0;
-    }
-
-    &__heading {
-      margin: 0;
-    }
-
-    &__list {
-      font-size: 14px;
-      margin: 0;
-      padding: 0 0 0 24px;
-    }
-
-    &__list-item {
-      list-style-type: square;
-    }
-
-    &__overlay {
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.85);
-      border-radius: $window-frame-border-radius - $window-frame-padding;
-      bottom: 0;
-      color: #dedede;
-      display: flex;
-      flex-direction: column;
-      font-size: 24px;
-      gap: 24px;
-      justify-content: center;
-      left: 0;
-      opacity: 0;
-      padding: 24px;
-      pointer-events: none;
-      position: absolute;
-      right: 0;
-      text-align: center;
-      transition: opacity 0.3s ease-in-out;
-      top: 0;
-      z-index: 10;
-    }
-
-    &__overlay--visible {
-      opacity: 1;
-    }
-
-    &__selected-game {
-      color: #fff;
-      font-family: 'Doto', sans-serif;
-      font-size: 48px;
-      font-weight: 600;
-      margin: 0;
-    }
-  }
-</style>

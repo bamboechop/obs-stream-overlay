@@ -1,9 +1,8 @@
 <template>
   <div
     ref="flipTextElement"
-    class="flip-text"
     :data-word="currentWord">
-    <div class="flip-text__card flip-card">
+    <div class="flip-card">
       <b
         class="flip-card__top"
         :style="{ width: '100%' }">{{ currentWord }}</b>
@@ -245,10 +244,7 @@ defineExpose({
 });
 </script>
 
-<style lang="scss" scoped>
-$halfHeight: 0.75em; // em to be relative to the font-size
-$borderRadius: 0.15em; // em to be relative to the font-size
-
+<style scoped>
 *,
 *::before,
 *::after {
@@ -259,7 +255,7 @@ $borderRadius: 0.15em; // em to be relative to the font-size
 .flip-card {
   font-size: 48px;
   line-height: 0.95;
-  padding-bottom: $halfHeight;
+  padding-bottom: 0.75em; /* keep in sync with line 273; em to be relative to the font-size */
   position: relative;
 }
 
@@ -270,11 +266,11 @@ $borderRadius: 0.15em; // em to be relative to the font-size
 .flip-card__back::after {
   backface-visibility: hidden;
   background-color: #222;
-  border-radius: $borderRadius $borderRadius 0 0;
+  border-radius: 0.15em 0.15em 0 0; /* em to be relative to the font-size */
   color: #ccc;
   display: block;
   font-family: 'Doto', sans-serif;
-  height: $halfHeight;
+  height: 0.75em; /* keep in sync with line 258; em to be relative to the font-size */
   overflow: hidden;
   padding: 0.23em 0.25em 0.4em;
   text-align: center;
@@ -297,7 +293,7 @@ $borderRadius: 0.15em; // em to be relative to the font-size
 .flip-card__bottom,
 .flip-card__back-bottom {
   background-color: #393939;
-  border-radius: 0 0 $borderRadius $borderRadius;
+  border-radius: 0 0 0.15em 0.15em; /* em to be relative to the font-size */
   border-top: solid 1px #000;
   color: #eee;
   overflow: hidden;
@@ -313,7 +309,7 @@ $borderRadius: 0.15em; // em to be relative to the font-size
 .flip-card__bottom::after,
 .flip-card__back-bottom::after {
   display: block;
-  margin-top: calc(-#{$halfHeight} - 1px);
+  margin-top: calc(-0.75em - 1px); /* keep in sync with line 258; em to be relative to the font-size */
 }
 
 .flip-card__back::before,
@@ -339,18 +335,18 @@ $borderRadius: 0.15em; // em to be relative to the font-size
 
 .flip .flip-card__back::before {
   z-index: 1;
-  animation: flipTop v-bind(topAnimationSpeed) cubic-bezier(.37,.01,.94,.35);
+  animation: next-game-flip-text-flipTop v-bind(topAnimationSpeed) cubic-bezier(.37,.01,.94,.35);
   animation-fill-mode: both;
   transform-origin: center bottom;
 }
 
 .flip .flip-card__bottom {
-  animation: flipBottom v-bind(bottomAnimationSpeed) cubic-bezier(.15,.45,.28,1);
+  animation: next-game-flip-text-flipBottom v-bind(bottomAnimationSpeed) cubic-bezier(.15,.45,.28,1);
   animation-fill-mode: both;
   transform-origin: center top;
 }
 
-@keyframes flipTop {
+@keyframes next-game-flip-text-flipTop {
   0% {
     transform: rotateX(0deg);
     z-index: 2;
@@ -364,7 +360,7 @@ $borderRadius: 0.15em; // em to be relative to the font-size
   }
 }
 
-@keyframes flipBottom {
+@keyframes next-game-flip-text-flipBottom {
   0%, 50% {
     z-index: -1;
     transform: rotateX(90deg);

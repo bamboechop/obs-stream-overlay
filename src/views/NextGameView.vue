@@ -1,7 +1,5 @@
 <template>
-  <section class="next-game-view">
-      <NextGame :active />
-  </section>
+  <NextGame :active />
 </template>
 
 <script setup lang="ts">
