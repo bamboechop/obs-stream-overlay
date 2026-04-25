@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^8.2.0",
-    "@rushstack/eslint-patch": "^1.16.1",
     "@tsconfig/node20": "^20.1.9",
     "@types/node": "^22.13.10",
     "@types/tmi.js": "^1.8.6",
