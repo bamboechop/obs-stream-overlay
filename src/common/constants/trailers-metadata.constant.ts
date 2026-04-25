@@ -42,14 +42,9 @@ export const TRAILERS_METADATA = {
       youtubeUrl: 'https://www.youtube.com/watch?v=tkTPl0A_Bk4',
     },
     {
-      title: 'Trackmania Fall Season 2025',
-      url: '/trailers/trackmania-fall-season-2025.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=WzsaEUzj1Es',
-    },
-    {
-      title: 'Trackmania',
-      url: '/trailers/trackmania-winter-season-2026.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=0-p3GeyksAs',
+      title: 'Trackmania Spring Season 2026 is here!',
+      url: '/trailers/trackmania-spring-season-2026.mp4',
+      youtubeUrl: 'https://www.youtube.com/watch?v=4OsOcGN0uGg',
     },
   ],
   'VEIN': [
