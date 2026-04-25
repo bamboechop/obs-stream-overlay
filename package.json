@@ -14,7 +14,7 @@
     "update:emote-flags": "node scripts/update-emote-flags.cjs"
   },
   "dependencies": {
-    "@atproto/api": "^0.19.8",
+    "@atproto/api": "^0.19.9",
     "@lucide/vue": "^1.8.0",
     "@splidejs/vue-splide": "^0.6.12",
     "@tailwindcss/vite": "^4.2.2",
