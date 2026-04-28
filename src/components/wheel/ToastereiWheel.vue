@@ -4,7 +4,7 @@
       <div
         v-show="isWheelVisible"
         ref="container"
-        class="bg-[#3c332e] rounded-t-full max-w-3xl border-16 border-white shadow-2xl pb-16 mx-auto w-full">
+        class="bg-[#3c332e] rounded-t-full max-w-3xl border-12 border-white/75 shadow-2xl pb-16 mx-auto w-full">
         <div
           ref="wheelContainer"
           class="aspect-square w-full"></div>
@@ -400,7 +400,7 @@ async function processQueuedSpins() {
 }
 
 onMounted(async () => {
-  loseAudioVolume.value = 1;
+  loseAudioVolume.value = 0.85;
   winAudioVolume.value = 1;
 
   audioElement.value = new Audio('/audio/relay-switch.wav');
