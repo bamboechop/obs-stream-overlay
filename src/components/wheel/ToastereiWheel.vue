@@ -40,6 +40,10 @@
       ref="loseAudio"
       preload="auto"
       src="/audio/toasterei-wheel-spin/you-lose.mp3"></audio>
+    <audio
+      ref="notificationAudio"
+      preload="auto"
+      src="/audio/toasterei-wheel-spin/notification.mp3"></audio>
   </div>
 </template>
 
@@ -70,11 +74,11 @@ interface QueuedWheelSpin {
 
 const { on } = useEventStreamComposable();
 
-const audioElement = ref<HTMLAudioElement | null>(null);
 const loseAudioRef = useTemplateRef<HTMLAudioElement>('loseAudio');
 const { currentTime: loseAudioCurrentTime, playing: loseAudioPlaying, volume: loseAudioVolume } = useMediaControls(loseAudioRef, { src: '/audio/toasterei-wheel-spin/you-lose.mp3' });
 const winAudioRef = useTemplateRef<HTMLAudioElement>('winAudio');
 const { currentTime: winAudioCurrentTime, playing: winAudioPlaying, volume: winAudioVolume } = useMediaControls(winAudioRef, { src: '/audio/toasterei-wheel-spin/you-win.mp3' });
+const notificationAudioRef = useTemplateRef<HTMLAudioElement>('notificationAudio');
 
 const containerRef = useTemplateRef<HTMLElement>('container');
 const isSpinning = ref(false);
@@ -276,14 +280,6 @@ function initializeWheel(overlayImage: HTMLImageElement, channelPointsImage: HTM
     rotationResistance: 0,
     rotationSpeedMax: 100000,
     radius: 0.9,
-    onCurrentIndexChange: () => {
-      if (audioElement.value) {
-        audioElement.value.currentTime = 0;
-        audioElement.value.play().catch((err) => {
-          console.warn('Could not play audio:', err);
-        });
-      }
-    },
     onRest: () => {
       isSpinning.value = false;
       if (spinResult.value) {
@@ -312,6 +308,17 @@ function initializeWheel(overlayImage: HTMLImageElement, channelPointsImage: HTM
 
   wheelInstance.value = new Wheel(wheelContainerRef.value, wheelConfig);
   return true;
+}
+
+function playNotificationAudio() {
+  if (!notificationAudioRef.value) {
+    return;
+  }
+
+  notificationAudioRef.value.currentTime = 0;
+  notificationAudioRef.value.play().catch((err) => {
+    console.warn('Could not play notification audio:', err);
+  });
 }
 
 function handleSpin(result: WheelResult) {
@@ -363,6 +370,7 @@ async function processSingleSpin(spinData: QueuedWheelSpin): Promise<void> {
     }
 
     isWheelVisible.value = true;
+    playNotificationAudio();
     clearQueuedSpinTimer();
     queuedSpinTimeoutId.value = setTimeout(() => {
       handleSpin({
@@ -402,10 +410,6 @@ async function processQueuedSpins() {
 onMounted(async () => {
   loseAudioVolume.value = 0.85;
   winAudioVolume.value = 1;
-
-  audioElement.value = new Audio('/audio/relay-switch.wav');
-  audioElement.value.preload = 'auto';
-  audioElement.value.volume = 1;
 
   unsubscribeSharedSpin = on<IEventStreamToastereiWheelSharedSpinData>('toasterei.wheel.shared-spin', async (data) => {
     spinQueue.value.push({
