@@ -9,6 +9,7 @@
       :class="{
         'aspect-square': aspectRatio === '1' || aspectRatio === '1:1' || aspectRatio === '1/1',
         'aspect-video': aspectRatio === '16:9' || aspectRatio === '16/9',
+        'aspect-4/3': aspectRatio === '4:3' || aspectRatio === '4/3',
       }"></div>
   </WindowFrame>
 </template>

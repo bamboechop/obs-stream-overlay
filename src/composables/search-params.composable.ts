@@ -13,7 +13,7 @@ export function useSearchParamsComposable() {
     'message-debug'?: 'true' | 'false';
     'title'?: string;
     'url'?: string;
-    'webcam-aspect-ratio'?: '1' | '16:9';
+    'webcam-aspect-ratio'?: '1' | '4:3' | '16:9';
   }>('history');
 
   const gigantifiedEmoteVolume = computed(() => {
