@@ -6,8 +6,7 @@
           alt=""
           class="max-h-[512px] filter-[drop-shadow(0_0_20px_#000)_drop-shadow(0_0_40px_#000)]"
           :class="[imageLoaded ? 'opacity-100' : 'opacity-0']"
-          :src="userImage"
-        />
+          :src="userImage" />
       </div>
     </template>
   </Transition>
@@ -17,18 +16,18 @@
 </template>
 
 <script lang="ts" setup>
-import { preloadImage } from '@/common/helpers/common.helper';
-import type { IEventStreamToasteryChannelPointsShowData } from '@/common/interfaces/event-stream.interface';
-import { useEventStreamComposable } from '@/composables/event-stream.composable';
+import type { IEventStreamToastereiChannelPointsShowData } from '@/common/interfaces/event-stream.interface';
 import { useMediaControls } from '@vueuse/core';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { preloadImage } from '@/common/helpers/common.helper';
+import { useEventStreamComposable } from '@/composables/event-stream.composable';
 
 const AUDIO_COUNT = 10;
 const DISPLAY_DURATION = 10000; // How long each toasty is shown (ms)
 const FADE_DURATION = 500; // Matches the CSS transition duration (ms)
 const QUEUE_GAP = 10000; // Pause between consecutive toasties (ms)
 
-const queue: IEventStreamToasteryChannelPointsShowData[] = [];
+const queue: IEventStreamToastereiChannelPointsShowData[] = [];
 let queueTimerId: ReturnType<typeof setTimeout> | null = null;
 
 const TOASTEREI_BASE_URL = import.meta.env.VITE_DIE_TOASTEREI_BASE_URL;
@@ -43,8 +42,7 @@ const isProcessing = ref(false);
 const imageLoaded = ref(false);
 const userImage = ref<string>('');
 
-async function handleData(data: IEventStreamToasteryChannelPointsShowData) {
-  playAudio();
+async function handleData(data: IEventStreamToastereiChannelPointsShowData) {
   const avatarUrl = `${TOASTEREI_BASE_URL}/avatars/${data.userId}.png?${Date.now()}`;
 
   userImage.value = avatarUrl;
@@ -56,6 +54,7 @@ async function handleData(data: IEventStreamToasteryChannelPointsShowData) {
   }
 
   imageLoaded.value = true;
+  playAudio();
 
   // Keep the toasty visible for the display duration, then hide and schedule the next item
   queueTimerId = setTimeout(() => {
@@ -88,7 +87,7 @@ function processQueue() {
 }
 
 onMounted(() => {
-  on<IEventStreamToasteryChannelPointsShowData>('toastery.channel-points.show', (data) => {
+  on<IEventStreamToastereiChannelPointsShowData>('toasterei.channel-points.show', (data) => {
     queue.push(data);
     processQueue();
   });
