@@ -39,10 +39,10 @@
 </template>
 
 <script setup lang="ts">
+import type { ICiderApiMessage, ICiderArtwork, ICiderPlaybackData, ICiderPlaybackStateData, ICiderPlaybackTimeData } from '@/common/interfaces/cider.interface';
 import { computed, onMounted, ref } from 'vue';
 import { useCiderComposable } from '@/composables/cider.composable';
 import { useSearchParamsComposable } from '@/composables/search-params.composable';
-import type { ICiderApiMessage, ICiderArtwork, ICiderPlaybackData, ICiderPlaybackStateData, ICiderPlaybackTimeData } from '@/common/interfaces/cider.interface';
 
 const { musicPlayerDuration, hideAlbumArt } = useSearchParamsComposable();
 const cider = useCiderComposable();

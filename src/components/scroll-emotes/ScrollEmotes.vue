@@ -40,10 +40,10 @@
         </template>
       </div>
       <span
+        :ref="(el) => setNameRef(el as HTMLElement | null, index)"
         class="bg-black text-white text-xs font-semibold tracking-[0.5px] overflow-hidden px-2 py-1 text-center"
         :class="{ 'text-clip': hasMarquee(index) }"
-        :style="getMarqueeStyle(index)"
-        :ref="(el) => setNameRef(el as HTMLElement | null, index)">
+        :style="getMarqueeStyle(index)">
         <span
           class="inline-block min-w-full"
           :class="{ 'animate-[scroll-emote-marquee_var(--marquee-duration,6s)_linear_infinite_alternate] min-w-max text-left will-change-transform': hasMarquee(index) }">{{ emote.name }}</span>
@@ -53,11 +53,11 @@
 </template>
 
 <script lang="ts" setup>
-import { nextTick, onMounted, onUnmounted, ref } from 'vue';
 import { Heart, Star } from '@lucide/vue';
+import { storeToRefs } from 'pinia';
+import { nextTick, onMounted, onUnmounted, ref } from 'vue';
 import { EMOTES } from '@/common/constants/emotes.constant';
 import { useApplicationStore } from '@/stores/application.store';
-import { storeToRefs } from 'pinia';
 
 const applicationStore = useApplicationStore();
 const { intermissionVideoPlaying } = storeToRefs(applicationStore);

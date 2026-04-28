@@ -11,8 +11,8 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia';
 import WindowFrame from '@/components/desktop/WindowFrame.vue';
-import { useTwitchStore } from '@/stores/twitch.store';
 import { useProgramInformationComposable } from '@/composables/program-information.composable';
+import { useTwitchStore } from '@/stores/twitch.store';
 
 defineProps<{ active?: boolean }>();
 

@@ -1,4 +1,3 @@
-import { onBeforeUnmount, ref, type Ref } from 'vue';
 import type {
   AnonSubMysteryGiftUserstate,
   BanUserstate,
@@ -12,11 +11,7 @@ import type {
   SubUserstate,
   TimeoutUserstate,
 } from 'tmi.js';
-import {
-  client as tmiClient,
-} from 'tmi.js';
-import { storeToRefs } from 'pinia';
-import { ensureAuthForRoute, twitchRequest } from '@/services/twitch-auth.service';
+import type { Ref } from 'vue';
 import type {
   IAction,
   IChat,
@@ -26,9 +21,15 @@ import type {
   ISubscription,
   ITwitchBadgeResponse,
 } from '@/common/interfaces/index.interface';
+import { storeToRefs } from 'pinia';
+import {
+  client as tmiClient,
+} from 'tmi.js';
+import { onBeforeUnmount, ref } from 'vue';
 import { getUserIdByUserName, getUserImageByUserId, getUserNameByUserId, parseChannelName, parsePlan } from '@/common/helpers/twitch-message.helper';
-import { useTwitchStore } from '@/stores/twitch.store';
 import { useSearchParamsComposable } from '@/composables/search-params.composable';
+import { ensureAuthForRoute, twitchRequest } from '@/services/twitch-auth.service';
+import { useTwitchStore } from '@/stores/twitch.store';
 
 export const broadcasterInfo = {
   id: import.meta.env.VITE_TWITCH_BROADCASTER_ID,

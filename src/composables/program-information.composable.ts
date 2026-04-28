@@ -1,8 +1,8 @@
-import { computed } from 'vue';
-import { storeToRefs } from 'pinia';
 import type { TProgramId } from '@/common/types/index.type';
-import { useTwitchStore } from '@/stores/twitch.store';
+import { storeToRefs } from 'pinia';
+import { computed } from 'vue';
 import { GAME_METADATA } from '@/common/constants/game-metadata.constant';
+import { useTwitchStore } from '@/stores/twitch.store';
 
 export function useProgramInformationComposable() {
   const twitchStore = useTwitchStore();

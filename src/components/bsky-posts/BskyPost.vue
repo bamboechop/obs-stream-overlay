@@ -19,7 +19,9 @@
           :src="post.external.thumb"
           class="object-cover w-full aspect-video"
           :alt="post.external.title" />
-        <div class="bg-black/50 bottom-0 text-white flex flex-col gap-1 left-0 p-3 right-0" :class="{ 'absolute': post.external.thumb }">
+        <div
+          class="bg-black/50 bottom-0 text-white flex flex-col gap-1 left-0 p-3 right-0"
+          :class="{ absolute: post.external.thumb }">
           <div class="text-base font-semibold">
             {{ post.external.title }}
           </div>

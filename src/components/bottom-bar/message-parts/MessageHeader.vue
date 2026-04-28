@@ -20,10 +20,10 @@
 </template>
 
 <script lang="ts" setup>
-import { getReadableStrokeColor, parseUserBadges } from '@/common/helpers/twitch-message.helper';
-import type { IBadge } from '@/common/interfaces/index.interface';
 import type { Badges } from 'tmi.js';
+import type { IBadge } from '@/common/interfaces/index.interface';
 import { computed, onMounted, ref } from 'vue';
+import { getReadableStrokeColor, parseUserBadges } from '@/common/helpers/twitch-message.helper';
 
 const props = defineProps<{
   availableBadges: Record<string, IBadge[]>;
@@ -42,12 +42,14 @@ const nameColor = computed(() => {
   if (isActionOrChatMessage.value) {
     return props.color;
   }
+  return '#ffffff';
 });
 
 const strokeColor = computed(() => {
   if (isActionOrChatMessage.value) {
     return getReadableStrokeColor(props.color);
   }
+  return '#000000';
 });
 
 onMounted(async () => {

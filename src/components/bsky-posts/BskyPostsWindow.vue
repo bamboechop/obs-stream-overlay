@@ -3,8 +3,8 @@
     <WindowFrame
       :active
       class="w-full opacity-100 transition-opacity duration-500 ease-in-out"
-      :class="{ 
-        'opacity-0!': intermissionVideoPlaying
+      :class="{
+        'opacity-0!': intermissionVideoPlaying,
       }">
       <div
         class="bg-white grid transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] overflow-hidden min-w-0"
@@ -33,13 +33,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, watch } from 'vue';
+import type { BlueskyPost } from '@/composables/bluesky.composable';
 import { storeToRefs } from 'pinia';
+import { computed, onMounted, ref, watch } from 'vue';
+import WindowFrame from '@/components/desktop/WindowFrame.vue';
+import { fetchLatestPosts, filterPosts } from '@/composables/bluesky.composable';
+import { useApplicationStore } from '@/stores/application.store';
 import BskyPost from './BskyPost.vue';
 import ImageCarousel from './ImageCarousel.vue';
-import WindowFrame from '@/components/desktop/WindowFrame.vue';
-import { type BlueskyPost, fetchLatestPosts, filterPosts } from '@/composables/bluesky.composable';
-import { useApplicationStore } from '@/stores/application.store';
 
 defineProps<{ active?: boolean }>();
 

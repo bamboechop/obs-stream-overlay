@@ -2,40 +2,39 @@
   <li
     class="chat-message rounded-t-lg border border-b-0 bottom-0 max-w-[656px] max-h-full min-w-fit pt-[5px] absolute right-0 transition-transform duration-400 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] w-max after:bg-[rgba(17,17,17,.7)] after:rounded-t-lg after:bottom-0 after:content-[''] after:left-0 after:absolute after:right-0 after:top-0 after:-z-1"
     :class="{
-      'invert': isHighlightedMessage,
+      invert: isHighlightedMessage,
     }"
     :style="{ transform: transformStyle }">
     <img
       alt=""
       class="bottom-0 left-[-16px] absolute aspect-square h-16 w-16 transition-opacity duration-200 ease-[cubic-bezier(0.25,0.1,0.25,1.0)]"
-      :class="{ 'invert': isHighlightedMessage }"
+      :class="{ invert: isHighlightedMessage }"
       :src="userImage"
       :style="{ opacity: imageLoaded ? 1 : 0 }"
-      @error="handleUserImageError"
-    />
-      <div
-        class="pl-[52px] pr-1 w-full"
-        :class="{ 'pb-[5px]': !$slots.content }">
-        <slot name="header"></slot>
-        <slot name="content"></slot>
-      </div>
-      <img
-        v-if="messageParts.at(-1)?.type === 'emote' && isGigantifiedEmoteMessage"
-        :alt="messageParts.at(-1)!.raw"
-        class="left-1/2 max-h-16 max-w-16 absolute -top-16 -translate-x-1/2"
-        :src="messageParts.at(-1)!.value" />
+      @error="handleUserImageError" />
+    <div
+      class="pl-[52px] pr-1 w-full"
+      :class="{ 'pb-[5px]': !$slots.content }">
+      <slot name="header"></slot>
+      <slot name="content"></slot>
+    </div>
+    <img
+      v-if="messageParts.at(-1)?.type === 'emote' && isGigantifiedEmoteMessage"
+      :alt="messageParts.at(-1)!.raw"
+      class="left-1/2 max-h-16 max-w-16 absolute -top-16 -translate-x-1/2"
+      :src="messageParts.at(-1)!.value" />
   </li>
 </template>
 
 <script lang="ts" setup>
-import { preloadImage } from '@/common/helpers/common.helper';
-import { hexToRgb, parseMessage } from '@/common/helpers/twitch-message.helper';
 import type { IAction, IChat } from '@/common/interfaces/index.interface';
 import { computed, nextTick, onMounted, ref } from 'vue';
-
-const TOASTEREI_BASE_URL = import.meta.env.VITE_DIE_TOASTEREI_BASE_URL;
+import { preloadImage } from '@/common/helpers/common.helper';
+import { hexToRgb, parseMessage } from '@/common/helpers/twitch-message.helper';
 
 const props = defineProps<(IAction | IChat) & { messageIndex?: number; messageOffset?: number }>();
+
+const TOASTEREI_BASE_URL = import.meta.env.VITE_DIE_TOASTEREI_BASE_URL;
 
 const messageParts = ref<Record<string, string | undefined>[]>([]);
 const mounted = ref(false);
@@ -59,6 +58,7 @@ const messageBackgroundColor = computed(() => {
       return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0.3)`;
     }
   }
+  return 'rgba(0,0,0,0.3)';
 });
 
 const messageBorderColor = computed(() => {
@@ -68,6 +68,7 @@ const messageBorderColor = computed(() => {
       return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0.45)`;
     }
   }
+  return 'rgba(0,0,0,0.45)';
 });
 
 const transformStyle = computed(() => {

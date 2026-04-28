@@ -2,7 +2,7 @@
   <WindowFrame
     :active="active"
     class="w-max"
-    :icon-path="programInformation['schedule'].iconPath"
+    :icon-path="programInformation.schedule.iconPath"
     title="Streamplan">
     <div class="bg-[#0e0e10] rounded-sm text-white pt-[39px]">
       <img

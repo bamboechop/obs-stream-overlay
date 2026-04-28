@@ -11,23 +11,23 @@
           :color="message.color ?? '#007896'"
           :message-index="index"
           :message-offset="getMessageOffset(index)">
-            <template #header>
-              <MessageHeader
-                :availableBadges="message.availableBadges"
-                :color="message.color ?? '#007896'"
-                :displayName="message.displayName"
-                :msgType="message.msgType"
-                :userBadges="message.userBadges"
-                :userName="message.userName" />
-            </template>
-            <template #content>
-              <MessageContent
-                :emotes="message.emotes"
-                :msgId="'msgId' in message ? message.msgId : undefined"
-                :msgType="message.msgType"
-                :text="message.text"
-                :userId="message.userId" />
-            </template>
+          <template #header>
+            <MessageHeader
+              :available-badges="message.availableBadges"
+              :color="message.color ?? '#007896'"
+              :display-name="message.displayName"
+              :msg-type="message.msgType"
+              :user-badges="message.userBadges"
+              :user-name="message.userName" />
+          </template>
+          <template #content>
+            <MessageContent
+              :emotes="message.emotes"
+              :msg-id="'msgId' in message ? message.msgId : undefined"
+              :msg-type="message.msgType"
+              :text="message.text"
+              :user-id="message.userId" />
+          </template>
         </ChatMessage>
         <RaidMessage
           v-if="message.msgType === 'raid'"
@@ -62,21 +62,22 @@
 </template>
 
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia';
-import { type ComponentPublicInstance, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue';
-import { useMediaControls } from '@vueuse/core';
-import { useTwitchStore } from '@/stores/twitch.store';
+import type { ComponentPublicInstance } from 'vue';
 import type { IChat } from '@/common/interfaces/index.interface';
+import type { TMessage } from '@/common/types/index.type';
+import { useMediaControls } from '@vueuse/core';
+import { storeToRefs } from 'pinia';
+import { nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 import { PRIMARY_BOT_ACCOUNT_USERNAME } from '@/common/constants/bot-accounts.constant';
-import { broadcasterInfo } from '@/composables/twitch-chat.composable';
 import ChatMessage from '@/components/bottom-bar/ChatMessage.vue';
-import RaidMessage from '@/components/bottom-bar/RaidMessage.vue';
-import MessageHeader from '@/components/bottom-bar/message-parts/MessageHeader.vue';
 import MessageContent from '@/components/bottom-bar/message-parts/MessageContent.vue';
+import MessageHeader from '@/components/bottom-bar/message-parts/MessageHeader.vue';
+import RaidMessage from '@/components/bottom-bar/RaidMessage.vue';
+import { broadcasterInfo } from '@/composables/twitch-chat.composable';
+import { useTwitchStore } from '@/stores/twitch.store';
+import ResubMessage from './ResubMessage.vue';
 import SubgiftMessage from './SubgiftMessage.vue';
 import SubMessage from './SubMessage.vue';
-import ResubMessage from './ResubMessage.vue';
-import type { TMessage } from '@/common/types/index.type';
 
 const store = useTwitchStore();
 const { messages } = storeToRefs(store);
@@ -114,7 +115,7 @@ function getBaseMessageOffset(index: number): number {
 
 function getMessageOffset(index: number): number {
   let offset = getBaseMessageOffset(index);
-  
+
   // Add slide-out offset for messages that have crossed the 1-minute threshold
   const message = messages.value[index];
   if (message && 'id' in message && message.id) {
@@ -123,7 +124,7 @@ function getMessageOffset(index: number): number {
       offset += slideOutOffset;
     }
   }
-  
+
   return offset;
 }
 
@@ -155,7 +156,7 @@ function removeOffscreenMessages() {
   // Iterate through messages from oldest (index 0) to newest
   for (let i = 0; i < messages.value.length; i++) {
     const message = messages.value[i];
-    
+
     if (!('id' in message) || !message.id) {
       continue;
     }
@@ -229,9 +230,9 @@ function startSilenceDetection() {
   if (silenceTimeout) {
     clearTimeout(silenceTimeout);
   }
-  
+
   shouldPlaySoundOnNextMessage.value = false;
-  
+
   silenceTimeout = setTimeout(() => {
     shouldPlaySoundOnNextMessage.value = true;
   }, 5 * 60 * 1000);
@@ -249,9 +250,8 @@ function playNotificationSound() {
     playing.value = true;
 
     shouldPlaySoundOnNextMessage.value = false;
-    
-    startSilenceDetection();
 
+    startSilenceDetection();
   } catch (error) {
     console.warn('Error playing chat notification sound:', error);
   } finally {
@@ -263,7 +263,7 @@ function trackMessageDisplayTime(message: TMessage) {
   if (!('id' in message) || !message.id) {
     return;
   }
-  
+
   // Only track if not already tracked (to preserve original timestamp)
   if (!messageDisplayTimes.value.has(message.id)) {
     // Use message timestamp if available, otherwise use current time
@@ -277,9 +277,9 @@ function cleanupDisplayTimes() {
   const currentMessageIds = new Set(
     messages.value
       .filter((msg): msg is typeof msg & { id: string } => 'id' in msg && !!msg.id)
-      .map((msg) => msg.id)
+      .map(msg => msg.id),
   );
-  
+
   // Remove display times, slide-out start times, and slide-out offsets for messages that no longer exist
   messageDisplayTimes.value.forEach((_, id) => {
     if (!currentMessageIds.has(id)) {
@@ -297,32 +297,32 @@ onMounted(async () => {
   startSilenceDetection();
   await calculateMessageWidths();
   removeOffscreenMessages();
-  
+
   // Set up interval to check for messages that need to slide out
   // Only update offsets for messages that cross the 1-minute threshold
   slideOutInterval = window.setInterval(() => {
     const now = Date.now();
-    
+
     // Check each message to see if it has crossed the 1-minute threshold
-    messages.value.forEach((message, index) => {
+    messages.value.forEach((message) => {
       if (!('id' in message) || !message.id) {
         return;
       }
-      
+
       const displayTime = messageDisplayTimes.value.get(message.id);
       if (!displayTime) {
         return;
       }
-      
+
       const age = now - displayTime;
-      
+
       // If message has crossed the threshold and isn't already sliding out
       if (age >= MESSAGE_LIFETIME_MS && !messageSlideOutOffsets.value.has(message.id)) {
         // Track when slide-out started (only once)
         if (!messageSlideOutStartTimes.value.has(message.id)) {
           messageSlideOutStartTimes.value.set(message.id, now);
         }
-        
+
         // Calculate and store slide-out offset
         if (chatContainer.value) {
           const containerWidth = chatContainer.value.getBoundingClientRect().width;
@@ -331,7 +331,7 @@ onMounted(async () => {
         }
       }
     });
-    
+
     // Recalculate widths and remove offscreen messages
     if (chatContainer.value) {
       calculateMessageWidths();
@@ -352,13 +352,13 @@ watch(messages, async () => {
     return;
   }
   trackMessageDisplayTime(message);
-  
+
   // Clean up display times for removed messages
   cleanupDisplayTimes();
-  
+
   await calculateMessageWidths();
   removeOffscreenMessages();
-  
+
   if (message && shouldPlayNotificationSound(message as IChat)) {
     if (shouldPlaySoundOnNextMessage.value) {
       playNotificationSound();

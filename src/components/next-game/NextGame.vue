@@ -55,11 +55,11 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import FlipText from './FlipText.vue';
-import WindowFrame from '@/components/desktop/WindowFrame.vue';
 import { UNPLAYED_GAMES } from '@/common/constants/unplayed-games.constant';
+import WindowFrame from '@/components/desktop/WindowFrame.vue';
 import { useEventStreamComposable } from '@/composables/event-stream.composable';
 import { useProgramInformationComposable } from '@/composables/program-information.composable';
+import FlipText from './FlipText.vue';
 
 defineProps<{ active?: boolean }>();
 

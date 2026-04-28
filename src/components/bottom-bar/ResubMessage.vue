@@ -5,42 +5,41 @@
     <img
       alt=""
       class="aspect-square bottom-0 h-16 -left-4 absolute w-16"
-      src="/toastys/resub-bot.png"
-      />
-      <div class="pl-[52px] pr-1 w-full">
-        <strong class="resub-message-name">{{ displayName }}</strong>
-        <template v-if="userName && displayName?.toLowerCase() !== userName.toLowerCase()">
-          <span class="text-xs"> ({{ userName }})</span>
-        </template>
-        pflegt seit {{ cumulativeMonths ? cumulativeMonths : months }} Monaten den Garten!
-        <img
-          :alt="COZY_EMOTE?.name"
-          class="max-h-5 max-w-5 inline-block"
-          :src="COZY_EMOTE?.url" />
-        <div class="resub-message__text">
-          <template
-            v-for="(part, index) of messageParts"
-            :key="`resub-${part.value}-part-${index}`">
-            <template v-if="part.type === 'text'">
-              {{ part.value }}
-            </template>
-            <template v-if="part.type === 'emote'">
-              <img
-                :alt="part.raw"
-                class="max-h-5 max-w-5 inline-block"
-                :src="part.value" />
-            </template>
+      src="/toastys/resub-bot.png" />
+    <div class="pl-[52px] pr-1 w-full">
+      <strong class="resub-message-name">{{ displayName }}</strong>
+      <template v-if="userName && displayName?.toLowerCase() !== userName.toLowerCase()">
+        <span class="text-xs"> ({{ userName }})</span>
+      </template>
+      pflegt seit {{ cumulativeMonths ? cumulativeMonths : months }} Monaten den Garten!
+      <img
+        :alt="COZY_EMOTE?.name"
+        class="max-h-5 max-w-5 inline-block"
+        :src="COZY_EMOTE?.url" />
+      <div class="resub-message__text">
+        <template
+          v-for="(part, index) of messageParts"
+          :key="`resub-${part.value}-part-${index}`">
+          <template v-if="part.type === 'text'">
+            {{ part.value }}
           </template>
-        </div>
+          <template v-if="part.type === 'emote'">
+            <img
+              :alt="part.raw"
+              class="max-h-5 max-w-5 inline-block"
+              :src="part.value" />
+          </template>
+        </template>
       </div>
+    </div>
   </li>
 </template>
 
 <script lang="ts" setup>
-import { EMOTES } from '@/common/constants/emotes.constant';
-import { parseMessage } from '@/common/helpers/twitch-message.helper';
 import type { IResub } from '@/common/interfaces/index.interface';
 import { computed, onMounted, ref } from 'vue';
+import { EMOTES } from '@/common/constants/emotes.constant';
+import { parseMessage } from '@/common/helpers/twitch-message.helper';
 
 const props = defineProps<IResub & { messageIndex?: number; messageOffset?: number }>();
 

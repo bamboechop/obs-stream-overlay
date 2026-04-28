@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
-import { useEventStreamComposable } from '@/composables/event-stream.composable';
 import type { IEventStreamChannelPointsAutomaticRewardRedemptionAddData } from '@/common/interfaces/event-stream.interface';
+import { onMounted, ref } from 'vue';
 import { EMOTES } from '@/common/constants/emotes.constant';
+import { useEventStreamComposable } from '@/composables/event-stream.composable';
 
 interface FloatingEmote {
   id: number;

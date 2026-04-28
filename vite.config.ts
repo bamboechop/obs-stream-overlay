@@ -1,8 +1,8 @@
-import { URL, fileURLToPath } from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
 import VueDevTools from 'vite-plugin-vue-devtools';
 import svgLoader from 'vite-svg-loader';
 

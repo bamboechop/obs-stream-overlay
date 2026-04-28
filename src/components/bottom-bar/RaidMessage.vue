@@ -5,19 +5,18 @@
     <img
       alt=""
       class="aspect-square bottom-0 h-16 -left-4 absolute w-16"
-      src="/toastys/raid-bot.png"
-      />
-      <div class="pl-[52px] pr-1 w-full">
-        💨🎐 Ein frischer Wind trägt <strong>{{ viewerCount > 1 ? `${viewerCount} Gäste` : 'einen Gast' }}</strong> in den Garten.
-        <br />
-        Willkommen, und danke für den Raid, <strong class="text-[#ff369b] font-bold">{{ userName }}</strong>.
-        <br />
-        Wie war eure Reise?
-        <img
-          :alt="LOVE_EMOTE?.name"
-          class="max-h-5 max-w-5 inline-block"
-          :src="LOVE_EMOTE?.url" />
-      </div>
+      src="/toastys/raid-bot.png" />
+    <div class="pl-[52px] pr-1 w-full">
+      💨🎐 Ein frischer Wind trägt <strong>{{ viewerCount > 1 ? `${viewerCount} Gäste` : 'einen Gast' }}</strong> in den Garten.
+      <br />
+      Willkommen, und danke für den Raid, <strong class="text-[#ff369b] font-bold">{{ userName }}</strong>.
+      <br />
+      Wie war eure Reise?
+      <img
+        :alt="LOVE_EMOTE?.name"
+        class="max-h-5 max-w-5 inline-block"
+        :src="LOVE_EMOTE?.url" />
+    </div>
   </li>
 </template>
 

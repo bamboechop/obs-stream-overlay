@@ -1,5 +1,5 @@
-import { onBeforeUnmount, onMounted, ref } from 'vue';
 import type { ICiderApiMessage, ICiderPlaybackData, ICiderPlaybackStateData } from '@/common/interfaces/cider.interface';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { isCiderPlaybackEvent, parseSocketIOMessage } from '@/common/helpers/socket-io-parser.helper';
 
 const eventBus = new EventTarget();
@@ -55,7 +55,7 @@ export function useCiderComposable() {
       const response = await fetch('http://localhost:10767/api/v1/playback/playpause', {
         method: 'POST',
         headers: {
-          'apptoken': CIDER_APP_TOKEN,
+          apptoken: CIDER_APP_TOKEN,
         },
       });
 
@@ -74,7 +74,7 @@ export function useCiderComposable() {
     // Clamp volume between 0 and 1, then round to 1 decimal place
     const clampedVolume = Math.max(0, Math.min(1, volume));
     const roundedVolume = Math.round(clampedVolume * 10) / 10;
-    
+
     try {
       const response = await fetch('http://localhost:10767/api/v1/playback/volume', {
         method: 'POST',
@@ -133,7 +133,7 @@ export function useCiderComposable() {
         volumeTransitionTimeout = null;
         return;
       }
-      
+
       // If this is the first step and we're going from 0 to 1, send play pause to start playback
       if (currentStep === 0 && targetVolume === 1 && currentVolume === 0) {
         await sendPlayPause();
@@ -143,7 +143,7 @@ export function useCiderComposable() {
       // Round to 1 decimal place to avoid floating point precision issues
       const roundedStepVolume = Math.round(stepVolume * 10) / 10;
       const success = await setVolumeImmediate(roundedStepVolume);
-      
+
       if (success) {
         currentStep++;
         volumeTransitionTimeout = setTimeout(sendNextStep, 250);

@@ -5,31 +5,30 @@
     <img
       alt=""
       class="aspect-square bottom-0 h-16 -left-4 absolute w-16"
-      src="/toastys/subgift-bot.png"
-      />
-      <div class="pl-[52px] pr-1 w-full">
-        <strong :style="{ color: '#ff7512' }">{{ sender.displayName }}</strong>
-        <template v-if="sender.userName && sender.displayName?.toLowerCase() !== sender.userName.toLowerCase()">
-          <span class="text-xs"> ({{ sender.userName }})</span>
-        </template>
-        hat im Garten einen Platz für
-        <strong :style="{ color: '#ffdf12' }">{{ recipient.displayName }}</strong>
-        <template v-if="recipient.userName && recipient.displayName?.toLowerCase() !== recipient.userName.toLowerCase()">
-          <span class="text-xs"> ({{ recipient.userName }})</span>
-        </template>
-        vorbereitet. Vielen Dank.
-        <img
-          :alt="COZY_EMOTE?.name"
-          class="max-h-5 max-w-5 inline-block"
-          :src="COZY_EMOTE?.url" />
-      </div>
+      src="/toastys/subgift-bot.png" />
+    <div class="pl-[52px] pr-1 w-full">
+      <strong :style="{ color: '#ff7512' }">{{ sender.displayName }}</strong>
+      <template v-if="sender.userName && sender.displayName?.toLowerCase() !== sender.userName.toLowerCase()">
+        <span class="text-xs"> ({{ sender.userName }})</span>
+      </template>
+      hat im Garten einen Platz für
+      <strong :style="{ color: '#ffdf12' }">{{ recipient.displayName }}</strong>
+      <template v-if="recipient.userName && recipient.displayName?.toLowerCase() !== recipient.userName.toLowerCase()">
+        <span class="text-xs"> ({{ recipient.userName }})</span>
+      </template>
+      vorbereitet. Vielen Dank.
+      <img
+        :alt="COZY_EMOTE?.name"
+        class="max-h-5 max-w-5 inline-block"
+        :src="COZY_EMOTE?.url" />
+    </div>
   </li>
 </template>
 
 <script lang="ts" setup>
-import { EMOTES } from '@/common/constants/emotes.constant';
 import type { ISubGift } from '@/common/interfaces/index.interface';
 import { computed, onMounted, ref } from 'vue';
+import { EMOTES } from '@/common/constants/emotes.constant';
 
 const props = defineProps<ISubGift & { messageIndex?: number; messageOffset?: number }>();
 

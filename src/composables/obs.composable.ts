@@ -1,11 +1,11 @@
-import OBSWebSocket from 'obs-websocket-js';
-import { onBeforeUnmount } from 'vue';
-import { storeToRefs } from 'pinia';
 import type { TProgramId } from '@/common/types/index.type';
-import { useApplicationStore } from '@/stores/application.store';
-import { useTwitchStore } from '@/stores/twitch.store';
-import { useStreamStatusStore } from '@/stores/stream-status.store';
+import OBSWebSocket from 'obs-websocket-js';
+import { storeToRefs } from 'pinia';
+import { onBeforeUnmount } from 'vue';
 import { RequestCache } from '@/services/request-cache.service';
+import { useApplicationStore } from '@/stores/application.store';
+import { useStreamStatusStore } from '@/stores/stream-status.store';
+import { useTwitchStore } from '@/stores/twitch.store';
 
 interface ISceneItemMapping {
   programId: TProgramId;

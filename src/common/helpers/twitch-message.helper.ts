@@ -1,7 +1,7 @@
 import type { Badges, SubMethod } from 'tmi.js';
 import { getEmoteAsUrl, parseEmotesInMessage } from 'tmi-utils';
-import { STREAM_TOGETHER_COLORS } from '../constants/stream-together-colors.constant';
 import { twitchRequest } from '@/services/twitch-auth.service';
+import { STREAM_TOGETHER_COLORS } from '../constants/stream-together-colors.constant';
 
 interface TwitchUsersResponse {
   data: Array<{
@@ -113,34 +113,34 @@ export function getStreamTogetherColor(channelName: string, streamTogetherChanne
   return index >= 0 ? STREAM_TOGETHER_COLORS[index % STREAM_TOGETHER_COLORS.length] : STREAM_TOGETHER_COLORS[0];
 }
 
-export const hexToRgb = (hex: string): [number, number, number] | null => {
+export function hexToRgb(hex: string): [number, number, number] | null {
   // Remove # if present
   const cleanHex = hex.replace('#', '');
-  
+
   // Handle 3-digit hex
   if (cleanHex.length === 3) {
-    const r = parseInt(cleanHex[0] + cleanHex[0], 16);
-    const g = parseInt(cleanHex[1] + cleanHex[1], 16);
-    const b = parseInt(cleanHex[2] + cleanHex[2], 16);
+    const r = Number.parseInt(cleanHex[0] + cleanHex[0], 16);
+    const g = Number.parseInt(cleanHex[1] + cleanHex[1], 16);
+    const b = Number.parseInt(cleanHex[2] + cleanHex[2], 16);
     return [r, g, b];
   }
-  
+
   // Handle 6-digit hex
   if (cleanHex.length === 6) {
-    const r = parseInt(cleanHex.substring(0, 2), 16);
-    const g = parseInt(cleanHex.substring(2, 4), 16);
-    const b = parseInt(cleanHex.substring(4, 6), 16);
+    const r = Number.parseInt(cleanHex.substring(0, 2), 16);
+    const g = Number.parseInt(cleanHex.substring(2, 4), 16);
+    const b = Number.parseInt(cleanHex.substring(4, 6), 16);
     return [r, g, b];
   }
-  
+
   return null;
-};
+}
 
 /**
  * Chooses either a dark or light text stroke color based on
  * the perceived brightness of the provided hex color.
  */
-export const getReadableStrokeColor = (hex: string, darkColor = '#111111', lightColor = '#ffffff'): string => {
+export function getReadableStrokeColor(hex: string, darkColor = '#111111', lightColor = '#ffffff'): string {
   const rgb = hexToRgb(hex);
   if (!rgb) {
     return darkColor;
@@ -153,4 +153,4 @@ export const getReadableStrokeColor = (hex: string, darkColor = '#111111', light
 
   // Bright usernames get a dark stroke, dark usernames get a light stroke.
   return luminance >= 140 ? darkColor : lightColor;
-};
+}

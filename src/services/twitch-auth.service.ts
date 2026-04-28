@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { useLocalStorage } from '@vueuse/core';
+import axios from 'axios';
 import { RequestCache } from '@/services/request-cache.service';
 
 interface OAuthStatePayload {
@@ -219,7 +219,7 @@ export async function validateTokenWithTTL(ttlMs: number): Promise<boolean> {
   try {
     await RequestCache.request('https://id.twitch.tv/oauth2/validate', {
       headers: {
-        'Authorization': `Bearer ${token.value}`,
+        Authorization: `Bearer ${token.value}`,
       },
       method: 'GET',
     }, 10);
@@ -257,14 +257,10 @@ export async function twitchRequest<T>(
       } catch (retryError) {
         if (axios.isAxiosError(retryError) && retryError.response?.status === 401) {
           console.warn(`[TwitchAuth] Retry 401 for ${url}. Validating token.`);
-          try {
-            const isValid = await validateTokenWithTTL(0);
-            if (!isValid) {
-              console.warn('[TwitchAuth] Token invalid. Redirecting to OAuth.');
-              beginOAuth(getCurrentRoutePath());
-            }
-          } catch (validationError) {
-            throw validationError;
+          const isValid = await validateTokenWithTTL(0);
+          if (!isValid) {
+            console.warn('[TwitchAuth] Token invalid. Redirecting to OAuth.');
+            beginOAuth(getCurrentRoutePath());
           }
         }
         throw retryError;

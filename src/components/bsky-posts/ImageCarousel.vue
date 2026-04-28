@@ -20,9 +20,9 @@
 
 <script lang="ts" setup>
 // @ts-expect-error @splidejs/vue-splide typing definition couldn't be found
-import { Splide, SplideSlide } from '@splidejs/vue-splide';
-// @ts-expect-error @splidejs/vue-splide typing definition couldn't be found
 import type { Options } from '@splidejs/vue-splide';
+// @ts-expect-error @splidejs/vue-splide typing definition couldn't be found
+import { Splide, SplideSlide } from '@splidejs/vue-splide';
 import { computed, nextTick, onMounted, ref } from 'vue';
 import '@splidejs/vue-splide/css/core';
 

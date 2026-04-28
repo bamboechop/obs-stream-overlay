@@ -7,13 +7,13 @@
 </template>
 
 <script lang="ts" setup>
-import TaskBarModernTheme from '@/components/task-bar/TaskBar.vue';
-import Clock from '@/components/clock/Clock.vue';
-import ChatBottomBarTheme from '@/components/bottom-bar/Chat.vue';
-import { useTwitchChat } from '@/composables/twitch-chat.composable';
-import { useEventStreamComposable } from '@/composables/event-stream.composable';
-import { useTwitchStreamInfoComposable } from '@/composables/twitch-stream-info.composable';
 import { onMounted } from 'vue';
+import ChatBottomBarTheme from '@/components/bottom-bar/Chat.vue';
+import Clock from '@/components/clock/Clock.vue';
+import TaskBarModernTheme from '@/components/task-bar/TaskBar.vue';
+import { useEventStreamComposable } from '@/composables/event-stream.composable';
+import { useTwitchChat } from '@/composables/twitch-chat.composable';
+import { useTwitchStreamInfoComposable } from '@/composables/twitch-stream-info.composable';
 
 const { initChat, initTwitch } = useTwitchChat();
 

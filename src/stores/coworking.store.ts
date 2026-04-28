@@ -1,6 +1,6 @@
+import type { Note } from '@/common/interfaces/notes.interface';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import type { Note } from '@/common/interfaces/notes.interface';
 
 export const useCoworkingStore = defineStore('Coworking', () => {
   const myNotes = ref<Note[]>([]);

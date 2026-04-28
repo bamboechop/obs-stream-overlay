@@ -36,22 +36,22 @@
         :class="{ 'opacity-100': isVideoVisible }"
         playsinline
         preload="auto"
-        :src="selectedTrailerData.url" />
+        :src="selectedTrailerData.url"></video>
     </div>
   </WindowFrame>
 </template>
 
 <script lang="ts" setup>
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
-import { storeToRefs } from 'pinia';
 import { useMediaControls } from '@vueuse/core';
-import WindowFrame from '@/components/desktop/WindowFrame.vue';
-import { useTwitchStore } from '@/stores/twitch.store';
-import { useStreamStatusStore } from '@/stores/stream-status.store';
-import { useCiderComposable } from '@/composables/cider.composable';
+import { storeToRefs } from 'pinia';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import { GAME_METADATA } from '@/common/constants/game-metadata.constant';
 import { TRAILERS_METADATA } from '@/common/constants/trailers-metadata.constant';
+import WindowFrame from '@/components/desktop/WindowFrame.vue';
+import { useCiderComposable } from '@/composables/cider.composable';
 import { useApplicationStore } from '@/stores/application.store';
+import { useStreamStatusStore } from '@/stores/stream-status.store';
+import { useTwitchStore } from '@/stores/twitch.store';
 
 const props = defineProps<{ active?: boolean; mode?: 'end' | 'break' | 'start' }>();
 
@@ -73,7 +73,7 @@ const isVideoVisible = ref(false);
 const isVideoTextVisible = ref(false);
 let playTimeout: ReturnType<typeof setTimeout> | null = null;
 let hideTextTimeout: ReturnType<typeof setTimeout> | null = null;
-let hasStartedPlayback = ref(false);
+const hasStartedPlayback = ref(false);
 const firstAdFinished = ref(false);
 
 // Initialize ad break listener when component mounts
@@ -131,11 +131,11 @@ const startingSoonImage = computed(() => {
   return GAME_METADATA[category.value]?.backgroundImagePath ?? '/modern/game-backgrounds/default.jpg';
 });
 
-const startTrailerPlayback = async () => {
+async function startTrailerPlayback() {
   // Only start playback if stream is live and we haven't started yet
   if (props.mode === 'start' && selectedTrailerData.value && live.value && !hasStartedPlayback.value) {
     hasStartedPlayback.value = true;
-    
+
     // Wait for the video element to be created
     await nextTick();
     // Wait a bit more to ensure the video element is fully ready
@@ -144,7 +144,7 @@ const startTrailerPlayback = async () => {
       // Reset visibility state
       isVideoVisible.value = false;
       isVideoTextVisible.value = false;
-      
+
       // Clear any existing timeouts
       if (playTimeout) {
         clearTimeout(playTimeout);
@@ -162,7 +162,7 @@ const startTrailerPlayback = async () => {
       }, VIDEO_PLAYBACK_DELAY);
     }
   }
-};
+}
 
 // Fade in when video starts playing
 watch(playing, (isPlaying) => {

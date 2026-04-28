@@ -1,10 +1,10 @@
-import { AtpAgent } from '@atproto/api';
 import type { AppBskyEmbedExternal, AppBskyEmbedImages, AppBskyFeedDefs } from '@atproto/api';
+import { AtpAgent } from '@atproto/api';
 
-export type BlueskyPost =
-  | { type: 'text'; text: string; author: string }
-  | { type: 'image'; text: string; images: string[]; author: string }
-  | { type: 'external'; text: string; external: { uri: string; title: string; description?: string; thumb?: string }; author: string };
+export type BlueskyPost
+  = | { type: 'text'; text: string; author: string }
+    | { type: 'image'; text: string; images: string[]; author: string }
+    | { type: 'external'; text: string; external: { uri: string; title: string; description?: string; thumb?: string }; author: string };
 
 const agent = new AtpAgent({ service: 'https://public.api.bsky.app' });
 
@@ -68,6 +68,7 @@ export async function fetchLatestPosts(handle: string, limit: number = 5): Promi
       })
       .filter((post): post is BlueskyPost => post !== null);
   } catch (e) {
+    console.error('Error fetching latest posts:', e);
     return [];
   }
 }

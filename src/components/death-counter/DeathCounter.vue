@@ -1,21 +1,21 @@
 <template>
-    <Transition name="slide-up-and-fade">
-      <div v-show="enabled">
+  <Transition name="slide-up-and-fade">
+    <div v-show="enabled">
       <template v-if="category === 'Escape from Duckov'">
         <EscapeFromDuckovDeathCounter :count />
       </template>
     </div>
-    </Transition>
+  </Transition>
 </template>
 
 <script lang="ts" setup>
-import { useTwitchStore } from '@/stores/twitch.store';
-import { storeToRefs } from 'pinia';
-import EscapeFromDuckovDeathCounter from './games/EscapeFromDuckovDeathCounter.vue';
-import { onMounted, onUnmounted, ref, watch } from 'vue';
-import RequestCache from '@/services/request-cache.service';
-import { useEventStreamComposable } from '@/composables/event-stream.composable';
 import type { TwitchEventSubNotificationGameDeathToggleDto, TwitchEventSubNotificationGameDeathUpdateDto } from '@/common/interfaces/event-stream.interface';
+import { storeToRefs } from 'pinia';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
+import { useEventStreamComposable } from '@/composables/event-stream.composable';
+import RequestCache from '@/services/request-cache.service';
+import { useTwitchStore } from '@/stores/twitch.store';
+import EscapeFromDuckovDeathCounter from './games/EscapeFromDuckovDeathCounter.vue';
 
 const twitchStore = useTwitchStore();
 const { category } = storeToRefs(twitchStore);
@@ -88,4 +88,3 @@ onUnmounted(() => {
   }
 }
 </style>
-

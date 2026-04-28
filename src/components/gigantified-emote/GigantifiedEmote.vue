@@ -29,14 +29,14 @@
 </template>
 
 <script lang="ts" setup>
+import type { IChat } from '@/common/interfaces/index.interface';
+import { useMediaControls } from '@vueuse/core';
 import { storeToRefs } from 'pinia';
 import { computed, onMounted, ref, watch } from 'vue';
-import { useMediaControls } from '@vueuse/core';
-import { useTwitchStore } from '@/stores/twitch.store';
-import type { IChat } from '@/common/interfaces/index.interface';
+import { EMOTES } from '@/common/constants/emotes.constant';
 import { parseMessage } from '@/common/helpers/twitch-message.helper';
 import { useSearchParamsComposable } from '@/composables/search-params.composable';
-import { EMOTES } from '@/common/constants/emotes.constant';
+import { useTwitchStore } from '@/stores/twitch.store';
 
 const store = useTwitchStore();
 const { messages } = storeToRefs(store);
@@ -145,7 +145,7 @@ watch(messages, () => {
       }
       // Generate unique ID for this emote instance
       const uniqueId = `${newestMessage.msgId}-${++messageId}`;
-      if (!gigantifiedEmoteQueue.value.find(item => item.messageId === uniqueId)) {
+      if (!gigantifiedEmoteQueue.value.some(item => item.messageId === uniqueId)) {
         gigantifiedEmoteQueue.value.push({ emote, messageId: uniqueId, url });
       }
     }

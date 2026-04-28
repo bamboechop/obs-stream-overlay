@@ -36,9 +36,9 @@
 import { storeToRefs } from 'pinia';
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import WindowFrame from '@/components/desktop/WindowFrame.vue';
-import { useTwitchStore } from '@/stores/twitch.store';
-import { useStreamStatusStore } from '@/stores/stream-status.store';
 import { useSearchParamsComposable } from '@/composables/search-params.composable';
+import { useStreamStatusStore } from '@/stores/stream-status.store';
+import { useTwitchStore } from '@/stores/twitch.store';
 
 const { debug } = useSearchParamsComposable();
 
@@ -68,7 +68,7 @@ watch(() => adSchedule.value, (newValue) => {
   duration.value = 0;
 
   // check if newValue doesn't exist or if nextTime is a date in the past
-  if (!newValue || newValue.nextTime < new Date().getTime()) {
+  if (!newValue || newValue.nextTime < Date.now()) {
     return;
   }
 
@@ -126,7 +126,7 @@ function updateRemainingTime() {
           // Simulate ad break by directly setting store values
           isAdRunning.value = true;
           adDuration.value = adSchedule.value.duration;
-          
+
           // Set timeout to mark ad as finished after duration
           window.setTimeout(() => {
             isAdRunning.value = false;

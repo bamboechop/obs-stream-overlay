@@ -30,6 +30,7 @@ export default antfu(
         }],
       },
     },
+    yaml: false,
   },
   {
     rules: {
@@ -38,12 +39,6 @@ export default antfu(
       'no-else-return': ['error', { allowElseIf: false }],
       'node/prefer-global/process': ['error', 'always'],
       'style/brace-style': ['error', '1tbs'],
-      'style/max-len': ['warn', {
-        code: 200,
-        ignoreRegExpLiterals: true,
-        ignoreTemplateLiterals: true,
-        ignoreUrls: true,
-      }],
     },
   },
 );

@@ -44,20 +44,20 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue';
-import { Square, SquareCheckBig, Timer, Users } from '@lucide/vue';
-import PollOption from './PollOption.vue';
-import { useEventStreamComposable } from '@/composables/event-stream.composable';
 import type {
   TwitchEventSubNotificationChannelPollBeginEventDto,
   TwitchEventSubNotificationChannelPollEndEventDto,
   TwitchEventSubNotificationChannelPollProgressEventDto,
 } from '@/common/interfaces/event-stream.interface';
+import { Square, SquareCheckBig, Timer, Users } from '@lucide/vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { useEventStreamComposable } from '@/composables/event-stream.composable';
+import PollOption from './PollOption.vue';
 
-type TwitchEventSubNotificationChannelPoll =
-  | TwitchEventSubNotificationChannelPollBeginEventDto
-  | TwitchEventSubNotificationChannelPollProgressEventDto
-  | TwitchEventSubNotificationChannelPollEndEventDto;
+type TwitchEventSubNotificationChannelPoll
+  = | TwitchEventSubNotificationChannelPollBeginEventDto
+    | TwitchEventSubNotificationChannelPollProgressEventDto
+    | TwitchEventSubNotificationChannelPollEndEventDto;
 
 // Constants for better maintainability
 const ANIMATION_DURATION = 500;
@@ -355,7 +355,7 @@ onMounted(() => {
 
   const beginCleanup = on<TwitchEventSubNotificationChannelPollBeginEventDto>('channel.poll.begin', (data) => {
     currentPoll.value = data;
-    remainingTime.value = Math.floor((new Date(data.ends_at).getTime() - new Date().getTime()) / 1000);
+    remainingTime.value = Math.floor((new Date(data.ends_at).getTime() - Date.now()) / 1000);
     initializeDisplayedValues(data.choices);
     updateDisplayedVotesAndPercent(data.choices, 0);
 

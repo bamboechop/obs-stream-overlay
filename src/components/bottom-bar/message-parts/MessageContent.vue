@@ -19,7 +19,7 @@
           <img
             :alt="part.raw"
             class="max-h-5 max-w-5 inline-block"
-            :class="{ 'invert': msgId === 'highlighted-message' }"
+            :class="{ invert: msgId === 'highlighted-message' }"
             :src="part.value" />
         </template>
       </template>

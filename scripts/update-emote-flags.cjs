@@ -6,7 +6,7 @@ const emotesFilePath = path.join(__dirname, '../src/common/constants/emotes.cons
 function loadEmotes() {
   const fileContent = fs.readFileSync(emotesFilePath, 'utf8');
 
-  const arrayMatch = fileContent.match(/export const EMOTES[^=]*=\s*\[([^]*)\];/);
+  const arrayMatch = fileContent.match(/export const EMOTES[^=]*=\s*\[([\s\S]*)\];/);
   if (!arrayMatch) {
     throw new Error('Could not find EMOTES array in the file');
   }
@@ -21,7 +21,7 @@ function loadEmotes() {
   // 3. Handle boolean values (keep them unquoted)
   arrayContent = arrayContent.replace(/"(true|false)"/g, '$1');
   // 4. Remove comma before closing brace with any amount of whitespace
-  arrayContent = arrayContent.replace(/,(\s*})/g, '$1');
+  arrayContent = arrayContent.replace(/,(\s*\})/g, '$1');
   // 5. Remove comma at the very end (before closing bracket)
   arrayContent = arrayContent.replace(/,(\s*)$/, '$1');
 

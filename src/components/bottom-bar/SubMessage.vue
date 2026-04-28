@@ -5,26 +5,25 @@
     <img
       alt=""
       class="aspect-square bottom-0 h-16 -left-4 absolute w-16"
-      src="/toastys/sub-bot.png"
-      />
-      <div class="pl-[52px] pr-1 w-full">
-        <strong class="sub-message-name">{{ displayName }}</strong>
-        <template v-if="userName && displayName?.toLowerCase() !== userName.toLowerCase()">
-          <span class="text-xs"> ({{ userName }})</span>
-        </template>
-        hat einen Kirschbaum gepflanzt und das Gleichgewicht gestärkt.
-        <img
-          :alt="COZY_EMOTE?.name"
-          class="max-h-5 max-w-5 inline-block"
-          :src="COZY_EMOTE?.url" />
-      </div>
+      src="/toastys/sub-bot.png" />
+    <div class="pl-[52px] pr-1 w-full">
+      <strong class="sub-message-name">{{ displayName }}</strong>
+      <template v-if="userName && displayName?.toLowerCase() !== userName.toLowerCase()">
+        <span class="text-xs"> ({{ userName }})</span>
+      </template>
+      hat einen Kirschbaum gepflanzt und das Gleichgewicht gestärkt.
+      <img
+        :alt="COZY_EMOTE?.name"
+        class="max-h-5 max-w-5 inline-block"
+        :src="COZY_EMOTE?.url" />
+    </div>
   </li>
 </template>
 
 <script lang="ts" setup>
-import { EMOTES } from '@/common/constants/emotes.constant';
 import type { ISubscription } from '@/common/interfaces/index.interface';
 import { computed, onMounted, ref } from 'vue';
+import { EMOTES } from '@/common/constants/emotes.constant';
 
 const props = defineProps<ISubscription & { messageIndex?: number; messageOffset?: number }>();
 

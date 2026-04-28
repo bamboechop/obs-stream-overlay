@@ -1,17 +1,17 @@
-import { defineStore } from 'pinia';
-import { ref } from 'vue';
-import { resubDummy } from '@data/resub.data';
-import { subscriptionDummy } from '@data/subscription.data';
-import { subgiftDummy } from '@data/subgift.data';
+import type { IEventStreamAdBreakBeginData } from '@/common/interfaces/event-stream.interface';
+import type { TMessage } from '@/common/types/index.type';
 import { actionDummy } from '@data/action.data';
 import { chatDummy } from '@data/chat.data';
 import { raidDummy } from '@data/raid.data';
+import { resubDummy } from '@data/resub.data';
+import { subgiftDummy } from '@data/subgift.data';
+import { subscriptionDummy } from '@data/subscription.data';
 import { useSessionStorage } from '@vueuse/core';
-import type { TMessage } from '@/common/types/index.type';
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 import { getUserIdByUserName } from '@/common/helpers/twitch-message.helper';
-import { RequestCache } from '@/services/request-cache.service';
 import { useEventStreamComposable } from '@/composables/event-stream.composable';
-import type { IEventStreamAdBreakBeginData } from '@/common/interfaces/event-stream.interface';
+import { RequestCache } from '@/services/request-cache.service';
 import { twitchRequest, validateTokenWithTTL } from '@/services/twitch-auth.service';
 
 interface TwitchAdScheduleResponse {
@@ -160,7 +160,7 @@ export const useTwitchStore = defineStore('Twitch Store', () => {
     adBreakUnsubscribe = on<IEventStreamAdBreakBeginData>('channel.ad_break.begin', (data) => {
       isAdRunning.value = true;
       adDuration.value = data.duration_seconds;
-      
+
       // Set timeout to mark ad as finished after duration
       window.setTimeout(() => {
         isAdRunning.value = false;
@@ -183,8 +183,7 @@ export const useTwitchStore = defineStore('Twitch Store', () => {
         (error as { code?: string }).code = 'ERR_BAD_REQUEST';
         throw error;
       }
-    }
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error && error.message === 'REQUEST_RECENTLY_MADE_BY_OTHER_INSTANCE') {
         return;
       }

@@ -1,6 +1,6 @@
+import type { TProgramId } from '@/common/types/index.type';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import type { TProgramId } from '@/common/types/index.type';
 
 export const useApplicationStore = defineStore('Application Store', () => {
   const visibleProgramIds = ref<TProgramId[]>([]);

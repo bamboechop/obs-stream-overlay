@@ -1,9 +1,9 @@
-import { onBeforeUnmount, onMounted } from 'vue';
+import type { IEventStreamChannelUpdateData } from '@/common/interfaces/event-stream.interface';
 import { storeToRefs } from 'pinia';
+import { onBeforeUnmount, onMounted } from 'vue';
+import { useTwitchStore } from '@/stores/twitch.store';
 import { useEventStreamComposable } from './event-stream.composable';
 import { useTwitchChat } from './twitch-chat.composable';
-import { useTwitchStore } from '@/stores/twitch.store';
-import type { IEventStreamChannelUpdateData } from '@/common/interfaces/event-stream.interface';
 
 function areChannelsEqual(a: string[], b: string[]) {
   if (a.length !== b.length) {
@@ -22,7 +22,7 @@ export function useTwitchStreamInfoComposable(initializeChat = false) {
   let retryTimeout: ReturnType<typeof setTimeout> | null = null;
   let retryCount = 0;
 
-  const scheduleRetry = () => {
+  function scheduleRetry() {
     if (retryTimeout || retryCount >= 3) {
       return;
     }
@@ -31,9 +31,9 @@ export function useTwitchStreamInfoComposable(initializeChat = false) {
       retryTimeout = null;
       void syncChannelInformation();
     }, 3000);
-  };
+  }
 
-  const syncChannelInformation = async () => {
+  async function syncChannelInformation() {
     try {
       const data = await getChannelInformation();
       retryCount = 0;
@@ -49,7 +49,7 @@ export function useTwitchStreamInfoComposable(initializeChat = false) {
       console.error('Failed to get channel information:', err);
       scheduleRetry();
     }
-  };
+  }
 
   onMounted(async () => {
     on<IEventStreamChannelUpdateData>('channel.update', async (data) => {

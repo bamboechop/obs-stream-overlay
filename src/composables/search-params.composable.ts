@@ -1,5 +1,5 @@
-import { computed } from 'vue';
 import { useUrlSearchParams } from '@vueuse/core';
+import { computed } from 'vue';
 
 export function useSearchParamsComposable() {
   const searchParams = useUrlSearchParams<{
