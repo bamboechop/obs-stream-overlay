@@ -108,7 +108,38 @@ export interface TwitchEventSubNotificationGameDeathUpdateDto {
   count: number;
 }
 
-export interface IEventStreamToasteryChannelPointsShowData {
+export interface IEventStreamToastereiChannelPointsShowData {
   userId: string;
   userName: string;
+}
+
+interface IEventStreamToastereiWheelSharedSpinProduct {
+  category: string;
+  cost: {
+    amount: number;
+    type: string;
+  } | null;
+  imageUrl: string;
+  inDevelopment: boolean;
+  name: string;
+  sku: string;
+  type: 'BITS' | 'CHANNEL_POINTS' | 'FREE';
+  unlocked: boolean;
+  isDefault?: boolean;
+  groupId?: number;
+  groupName?: string;
+  deletedAt?: string;
+  imageUpdatedAt?: string | Date;
+}
+
+export interface IEventStreamToastereiWheelSharedSpinData {
+  product: IEventStreamToastereiWheelSharedSpinProduct | undefined; // undefined when no product was won
+  userId: string;
+  userName: string;
+  weights: {
+    bitsWeight: number;
+    channelPointsWeight: number;
+    nothingWeight: number;
+  };
+  winningSegmentId: number;
 }

@@ -1,15 +1,16 @@
-import { onBeforeUnmount, onMounted, ref } from 'vue';
 import type {
   IEventStreamAdBreakBeginData,
   IEventStreamChannelPointsAutomaticRewardRedemptionAddData,
   IEventStreamChannelUpdateData,
-  IEventStreamToasteryChannelPointsShowData,
+  IEventStreamToastereiChannelPointsShowData,
+  IEventStreamToastereiWheelSharedSpinData,
   TwitchEventSubNotificationChannelPollBeginEventDto,
   TwitchEventSubNotificationChannelPollEndEventDto,
   TwitchEventSubNotificationChannelPollProgressEventDto,
   TwitchEventSubNotificationGameDeathToggleDto,
   TwitchEventSubNotificationGameDeathUpdateDto,
 } from '@/common/interfaces/event-stream.interface';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const eventBus = new EventTarget();
 let eventSource: EventSource | null = null;
@@ -141,9 +142,14 @@ export function useEventStreamComposable() {
         eventBus.dispatchEvent(new CustomEvent('overlay.timer.start'));
       });
 
-      addEventSourceListener('toastery.channel-points.show', (event) => {
-        const detail = JSON.parse(event.data) as IEventStreamToasteryChannelPointsShowData;
-        eventBus.dispatchEvent(new CustomEvent('toastery.channel-points.show', { detail }));
+      addEventSourceListener('toasterei.channel-points.show', (event) => {
+        const detail = JSON.parse(event.data) as IEventStreamToastereiChannelPointsShowData;
+        eventBus.dispatchEvent(new CustomEvent('toasterei.channel-points.show', { detail }));
+      });
+
+      addEventSourceListener('toasterei.wheel.shared-spin', (event) => {
+        const detail = JSON.parse(event.data) as IEventStreamToastereiWheelSharedSpinData;
+        eventBus.dispatchEvent(new CustomEvent('toasterei.wheel.shared-spin', { detail }));
       });
 
       eventSource.onopen = () => {

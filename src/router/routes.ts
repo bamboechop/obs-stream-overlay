@@ -1,7 +1,7 @@
 import type { RouteRecordRaw } from 'vue-router';
 import AdView from '@/views/AdView.vue';
-import BskyPostsView from '@/views/BskyPostsView.vue';
 import BottomBarView from '@/views/BottomBarView.vue';
+import BskyPostsView from '@/views/BskyPostsView.vue';
 import DeathCounterView from '@/views/DeathCounterView.vue';
 import GigantifiedEmoteView from '@/views/GigantifiedEmoteView.vue';
 import IntermissionView from '@/views/IntermissionView.vue';
@@ -11,10 +11,11 @@ import NextGameView from '@/views/NextGameView.vue';
 import OnScreenCelebrationView from '@/views/OnScreenCelebrationView.vue';
 import PDFViewer from '@/views/PDFViewer.vue';
 import PollView from '@/views/PollView.vue';
-import ScrollEmotesView from '@/views/ScrollEmotesView.vue';
 import ScheduleView from '@/views/ScheduleView.vue';
+import ScrollEmotesView from '@/views/ScrollEmotesView.vue';
 import ShowToastyView from '@/views/ShowToastyView.vue';
 import TimerView from '@/views/TimerView.vue';
+import ToastereiWheelView from '@/views/ToastereiWheelView.vue';
 import TwitchCallbackView from '@/views/TwitchCallbackView.vue';
 import WebcamView from '@/views/WebcamView.vue';
 
@@ -108,5 +109,10 @@ export const routes: RouteRecordRaw[] = [
     component: WebcamView,
     name: 'Webcam Component',
     path: '/webcam',
+  },
+  {
+    component: ToastereiWheelView,
+    name: 'Toasterei Wheel Spin',
+    path: '/toasterei-wheel-spin',
   },
 ];
