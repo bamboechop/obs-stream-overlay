@@ -20,7 +20,7 @@
     "@splidejs/vue-splide": "^0.6.12",
     "@tailwindcss/vite": "^4.2.4",
     "@vueuse/core": "^14.2.1",
-    "axios": "^1.15.0",
+    "axios": "^1.15.2",
     "obs-websocket-js": "^5.0.8",
     "pinia": "^3.0.4",
     "pinia-shared-state": "^2.0.1",
