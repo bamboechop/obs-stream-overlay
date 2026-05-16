@@ -18,7 +18,7 @@
     "@hiseb/confetti": "^2.1.0",
     "@lucide/vue": "^1.14.0",
     "@splidejs/vue-splide": "^0.6.12",
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "^4.3.0",
     "@vueuse/core": "^14.3.0",
     "axios": "^1.15.2",
     "obs-websocket-js": "^5.0.8",
