@@ -95,7 +95,7 @@ onMounted(async () => {
   }
 
   // Build the user avatar URL
-  const avatarUrl = `${TOASTEREI_BASE_URL}/avatars/${props.userId}.png?${Date.now()}`;
+  const avatarUrl = `${TOASTEREI_BASE_URL}/avatars/${props.userId}.png`;
 
   // Set the image URL immediately (browser starts loading, but we keep it invisible until preload completes)
   userImage.value = avatarUrl;

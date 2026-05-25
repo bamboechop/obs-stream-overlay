@@ -43,7 +43,7 @@ const imageLoaded = ref(false);
 const userImage = ref<string>('');
 
 async function handleData(data: IEventStreamToastereiChannelPointsShowData) {
-  const avatarUrl = `${TOASTEREI_BASE_URL}/avatars/${data.userId}.png?${Date.now()}`;
+  const avatarUrl = `${TOASTEREI_BASE_URL}/avatars/${data.userId}.png`;
 
   userImage.value = avatarUrl;
 
