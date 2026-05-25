@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import type { IAction, IChat } from '@/common/interfaces/index.interface';
 import { computed, nextTick, onMounted, ref } from 'vue';
-import { preloadImage } from '@/common/helpers/common.helper';
+import { getVersionedToastereiAvatarUrl, preloadImage } from '@/common/helpers/common.helper';
 import { hexToRgb, parseMessage } from '@/common/helpers/twitch-message.helper';
 
 const props = defineProps<(IAction | IChat) & { messageIndex?: number; messageOffset?: number }>();
@@ -94,16 +94,11 @@ onMounted(async () => {
     messageParts.value = parseMessage(props.emotes, props.text, 'dark', isGigantifiedEmoteMessage ? '3.0' : '2.0');
   }
 
-  // Build the user avatar URL
-  const avatarUrl = `${TOASTEREI_BASE_URL}/avatars/${props.userId}.png`;
-
-  // Set the image URL immediately (browser starts loading, but we keep it invisible until preload completes)
-  userImage.value = avatarUrl;
-
   // Start preload in parallel (don't await) - animation will start immediately
   (async () => {
     try {
-      await preloadImage(avatarUrl);
+      userImage.value = await getVersionedToastereiAvatarUrl(TOASTEREI_BASE_URL, props.userId) ?? defaultAvatarUrl;
+      await preloadImage(userImage.value);
       // Image is ready, fade it in
       imageLoaded.value = true;
     } catch {

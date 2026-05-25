@@ -19,7 +19,7 @@
 import type { IEventStreamToastereiChannelPointsShowData } from '@/common/interfaces/event-stream.interface';
 import { useMediaControls } from '@vueuse/core';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
-import { preloadImage } from '@/common/helpers/common.helper';
+import { getVersionedToastereiAvatarUrl, preloadImage } from '@/common/helpers/common.helper';
 import { useEventStreamComposable } from '@/composables/event-stream.composable';
 
 const AUDIO_COUNT = 10;
@@ -43,12 +43,9 @@ const imageLoaded = ref(false);
 const userImage = ref<string>('');
 
 async function handleData(data: IEventStreamToastereiChannelPointsShowData) {
-  const avatarUrl = `${TOASTEREI_BASE_URL}/avatars/${data.userId}.png`;
-
-  userImage.value = avatarUrl;
-
   try {
-    await preloadImage(avatarUrl);
+    userImage.value = await getVersionedToastereiAvatarUrl(TOASTEREI_BASE_URL, data.userId) ?? defaultAvatarUrl;
+    await preloadImage(userImage.value);
   } catch {
     userImage.value = defaultAvatarUrl;
   }
