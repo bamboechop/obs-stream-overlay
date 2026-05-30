@@ -35,7 +35,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^8.2.0",
     "@tsconfig/node22": "^22.0.5",
-    "@types/node": "^22.13.10",
+    "@types/node": "^24.0.0",
     "@types/tmi.js": "^1.8.6",
     "@vitejs/plugin-vue": "^6.0.7",
     "@vue/eslint-config-typescript": "^14.7.0",
