@@ -92,16 +92,9 @@ function setVisibility(visible: boolean) {
 }
 
 function updateSongInfo(data: ICiderPlaybackData) {
-  const albumArtUrl = getAlbumArtUrl(data.artwork);
-
-  setTimeout(() => {
-    currentTrack.value.albumArt = albumArtUrl;
-  }, 250);
-
-  setTimeout(() => {
+    currentTrack.value.albumArt = getAlbumArtUrl(data.artwork);
     currentTrack.value.name = data.name;
     currentTrack.value.artist = data.artistName;
-  }, 500);
 }
 
 function updateProgressBar(data: ICiderPlaybackTimeData) {
