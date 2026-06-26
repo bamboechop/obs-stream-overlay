@@ -73,7 +73,7 @@ function formatTime(timeInSeconds: number): string {
 }
 
 function getAlbumArtUrl(artwork: ICiderArtwork): string {
-  return artwork.url.replace('{w}', '180').replace('{h}', '180');
+  return artwork.url.replace('{w}', '180').replace('{h}', '180').replace('{f}', 'jpg');
 }
 
 function setVisibility(visible: boolean) {
