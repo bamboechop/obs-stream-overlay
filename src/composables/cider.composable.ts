@@ -44,7 +44,6 @@ export function useCiderComposable() {
   }
 
   function updateBackendSong() {
-    console.info('[Cider] Updating backend song:', currentSongInfo);
     const artist = currentSongInfo.isPlaying ? currentSongInfo.artist : '';
     const name = currentSongInfo.isPlaying ? currentSongInfo.name : '';
     sendSongToBackend(artist, name);
