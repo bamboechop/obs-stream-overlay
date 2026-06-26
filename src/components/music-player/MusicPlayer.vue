@@ -1,11 +1,11 @@
 <template>
   <div
-    class="flex gap-2 h-[100px] opacity-0 transition-all duration-500 ease-in-out"
+    class="flex gap-2 h-25 opacity-0 transition-all duration-500 ease-in-out"
     :class="{ 'opacity-100': isVisible }">
     <template v-if="!hideAlbumArt && currentTrack.albumArt">
       <img
         :alt="`Album art for ${currentTrack.name} by ${currentTrack.artist}`"
-        class="aspect-square rounded-[10px] shrink-0 object-cover overflow-hidden w-[100px]"
+        class="aspect-square rounded-[10px] shrink-0 object-cover overflow-hidden w-25"
         :src="currentTrack.albumArt" />
     </template>
     <div class="text-white relative text-shadow-[2px_2px_2px_rgba(0,0,0,0.5)] w-full">
