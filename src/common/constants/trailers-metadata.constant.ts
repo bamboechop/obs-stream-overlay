@@ -16,13 +16,6 @@ export const TRAILERS_METADATA = {
       youtubeUrl: 'https://www.youtube.com/watch?v=RPsxp_mo0y8',
     },
   ],
-  'Pokémon Legends: Arceus': [
-    {
-      title: 'Pokémon-Legenden: Arceus - Eine bekannte Region. Eine neue Geschichte.',
-      url: '/trailers/pokemon-legends-arceus-trailer.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=7juYHfFV6fU',
-    },
-  ],
   'Pokémon Pokopia': [
     {
       title: 'Pokémon Pokopia',
@@ -50,13 +43,6 @@ export const TRAILERS_METADATA = {
       title: 'Trackmania Spring Season 2026 is here!',
       url: '/trailers/trackmania-spring-season-2026.mp4',
       youtubeUrl: 'https://www.youtube.com/watch?v=4OsOcGN0uGg',
-    },
-  ],
-  'VEIN': [
-    {
-      title: 'VEIN - TRAILER 1',
-      url: '/trailers/vein-trailer-1.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=qjLDbxB-Xt4',
     },
   ],
 } as const;
