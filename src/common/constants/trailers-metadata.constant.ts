@@ -30,14 +30,9 @@ export const TRAILERS_METADATA = {
       youtubeUrl: 'https://www.youtube.com/watch?v=yjmzsOOrEnQ',
     },
     {
-      title: 'Trackmania Launch Trailer',
-      url: '/trailers/trackmania-launch-trailer.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=tkTPl0A_Bk4',
-    },
-    {
-      title: 'Trackmania Spring Season 2026 is here!',
-      url: '/trailers/trackmania-spring-season-2026.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=4OsOcGN0uGg',
+      title: 'Trackmania Summer 2026 ',
+      url: '/trailers/trackmania-summer-season-2026.mp4',
+      youtubeUrl: 'https://www.youtube.com/watch?v=sNT8XU5DcqA',
     },
   ],
 } as const;
