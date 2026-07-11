@@ -19,3 +19,26 @@ updates:
       - dependency-name: "eslint"
     assignees:
       - "bamboechop"
+    groups:
+      eslint:
+        patterns:
+          - "@antfu/eslint-config"
+          - "eslint*"
+      tailwind:
+        patterns:
+          - "@tailwindcss*"
+          - "tailwindcss*"
+      vite:
+        patterns:
+          - "vite*"
+          - "@vite*"
+      vue:
+        patterns:
+          - "@vue*"
+          - "vue*"
+          - "pinia*"
+      tmi:
+        patterns:
+          - "tmi.js"
+          - "tmi-utils"
+          - "@types/tmi.js"
