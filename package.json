@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
-    "@tsconfig/node22": "^22.0.5",
+    "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.0.0",
     "@types/tmi.js": "^1.8.6",
     "@vitejs/plugin-vue": "^6.0.7",
