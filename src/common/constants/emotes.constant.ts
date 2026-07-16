@@ -200,7 +200,7 @@ export const EMOTES: { lastModified: string; name: string; new: boolean; tier: '
     url: '/emotes/bamboe1Steer.gif',
   },
   {
-    lastModified: '2026-07-09',
+    lastModified: '2026-07-16',
     name: 'bamboe1ToastyDerWoche',
     new: true,
     tier: '1',
