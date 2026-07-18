@@ -12,6 +12,7 @@ updates:
       day: "saturday"
       time: "06:00"
       timezone: "Europe/Vienna"
+    open-pull-requests-limit: 50
     cooldown:
       default-days: 7
     ignore:
