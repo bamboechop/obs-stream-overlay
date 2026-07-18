@@ -16,7 +16,11 @@ updates:
       default-days: 7
     ignore:
       - dependency-name: "@types/node"
+        versions: [ ">24" ]
+      - dependency-name: "typescript"
+        versions: [ "7" ]
       - dependency-name: "eslint"
+        versions: [">9"]
     assignees:
       - "bamboechop"
     groups:
