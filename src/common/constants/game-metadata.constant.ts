@@ -17,6 +17,12 @@ export const GAME_METADATA: Record<string, Partial<{ backgroundImagePath: string
     iconPath: '/modern/programs/brotato.icon.png',
     intermissionTextMode: 'default',
   },
+  'Crysis Remastered': {
+    backgroundImagePath: '/modern/game-backgrounds/crysis-remastered.jpg',
+    color: 'rgba(74, 5, 9, 0.5)',
+    iconPath: '/modern/programs/crysis-remastered.icon.png',
+    intermissionTextMode: 'default',
+  },
   'Cult of the Lamb': {
     backgroundImagePath: '/modern/game-backgrounds/cult-of-the-lamb.jpg',
     color: 'rgba(239, 17, 30, 0.35)',
