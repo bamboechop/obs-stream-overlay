@@ -22,15 +22,15 @@
     "@vueuse/core": "^14.3.0",
     "axios": "^1.18.1",
     "obs-websocket-js": "^5.0.8",
-    "pinia": "^3.0.4",
+    "pinia": "^4.0.2",
     "pinia-shared-state": "^2.0.1",
     "spin-wheel": "^5.0.2",
     "tailwindcss": "^4.3.2",
     "tmi-utils": "^1.0.1",
     "tmi.js": "^1.8.5",
-    "vue": "^3.5.39",
+    "vue": "^3.5.40",
     "vue-pdf-embed": "^2.1.5",
-    "vue-router": "^5.1.0"
+    "vue-router": "^5.2.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^9.1.0",
