@@ -42,7 +42,7 @@
     "@vue/tsconfig": "^0.9.1",
     "eslint": "^9.39.4",
     "eslint-plugin-vue": "^10.9.2",
-    "npm-run-all2": "^9.0.2",
+    "npm-run-all2": "^9.0.3",
     "typescript": "^6.0.3",
     "vite": "^8.1.5",
     "vite-plugin-vue-devtools": "^8.1.5",
