@@ -44,8 +44,8 @@
     "eslint-plugin-vue": "^10.9.2",
     "npm-run-all2": "^9.0.2",
     "typescript": "^6.0.3",
-    "vite": "^8.1.5",
-    "vite-plugin-vue-devtools": "^8.1.5",
+    "vite": "^8.2.0",
+    "vite-plugin-vue-devtools": "^8.2.1",
     "vite-svg-loader": "^5.1.1",
     "vue-tsc": "^3.3.8"
   },
