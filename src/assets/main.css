@@ -27,10 +27,30 @@
    font-style: normal;
  }
 
+ @font-face {
+     font-family: 'Teko-Medium';
+     src: url('/fonts/TekoMedium/Teko-Medium.ttf.eot') format('eot'),
+          url('/fonts/TekoMedium/Teko-Medium.ttf.woff') format('woff'),
+          url('/fonts/TekoMedium/Teko-Medium.ttf.svg#Teko-Medium') format('svg');
+     font-weight: normal;
+     font-style: normal;
+ }
+
+ @font-face {
+     font-family: 'Teko-Bold';
+     src: url('/fonts/TekoBold/Teko-Bold.ttf.eot') format('eot'),
+          url('/fonts/TekoBold/Teko-Bold.ttf.woff') format('woff'),
+          url('/fonts/TekoBold/Teko-Bold.ttf.svg#Teko-Bold') format('svg');
+     font-weight: normal;
+     font-style: normal;
+ }
+
 @theme {
   --font-doto: 'Doto', sans-serif;
   --font-geist-mono: 'Geist Mono', monospace;
   --font-round-corner: 'Round Corner Font Regular', sans-serif;
+  --font-teko-bold: 'Teko-Bold', sans-serif;
+  --font-teko-medium: 'Teko-Medium', sans-serif;
 }
 
 :root {

@@ -4,6 +4,9 @@
       <template v-if="category === 'Escape from Duckov'">
         <EscapeFromDuckovDeathCounter :count />
       </template>
+      <template v-if="category === 'Crysis Remastered'">
+        <CrysisRemasteredDeathCounter :count />
+      </template>
     </div>
   </Transition>
 </template>
@@ -16,6 +19,7 @@ import { useEventStreamComposable } from '@/composables/event-stream.composable'
 import RequestCache from '@/services/request-cache.service';
 import { useTwitchStore } from '@/stores/twitch.store';
 import EscapeFromDuckovDeathCounter from './games/EscapeFromDuckovDeathCounter.vue';
+import CrysisRemasteredDeathCounter from '@/components/death-counter/games/CrysisRemasteredDeathCounter.vue'
 
 const twitchStore = useTwitchStore();
 const { category } = storeToRefs(twitchStore);
