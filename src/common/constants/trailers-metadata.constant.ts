@@ -5,11 +5,6 @@ export const TRAILERS_METADATA = {
       url: '/trailers/crysis-remastered-launch-trailer.mp4',
       youtubeUrl: 'https://www.youtube.com/watch?v=u6gsOQ8HZAU',
     },
-    {
-      title: 'Escape From Duckov - Summer Island Challenge',
-      url: '/trailers/escape-from-duckov-summer-island-challenge-trailer.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=RPsxp_mo0y8',
-    },
   ],
   'Escape from Duckov': [
     {
