@@ -46,7 +46,7 @@
     "typescript": "^6.0.3",
     "vite": "^8.2.2",
     "vite-plugin-vue-devtools": "^8.2.1",
-    "vite-svg-loader": "^5.1.1",
+    "vite-svg-loader": "^5.1.2",
     "vue-tsc": "^3.3.11"
   },
   "volta": {
