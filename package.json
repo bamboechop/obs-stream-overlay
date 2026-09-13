@@ -6,10 +6,12 @@
   "scripts": {
     "build": "run-p type-check \"build:only {@}\" --",
     "build:only": "npm run update:emote-flags && vite build",
+    "datasender": "node scripts/datasender/index.mjs",
     "dev": "npm run update:emote-flags && vite",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "preview": "npm run update:emote-flags && vite preview",
+    "test:datasender": "node --test scripts/datasender/*.test.mjs",
     "type-check": "vue-tsc --build --force",
     "update:emote-flags": "node scripts/update-emote-flags.cjs"
   },

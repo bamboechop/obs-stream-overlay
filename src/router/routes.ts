@@ -16,6 +16,7 @@ import ScrollEmotesView from '@/views/ScrollEmotesView.vue';
 import ShowToastyView from '@/views/ShowToastyView.vue';
 import TimerView from '@/views/TimerView.vue';
 import ToastereiWheelView from '@/views/ToastereiWheelView.vue';
+import TrackmaniaTrackProgressView from '@/views/TrackmaniaTrackProgressView.vue'
 import TwitchCallbackView from '@/views/TwitchCallbackView.vue';
 import WebcamView from '@/views/WebcamView.vue';
 
@@ -101,6 +102,16 @@ export const routes: RouteRecordRaw[] = [
     path: '/timer',
   },
   {
+    component: ToastereiWheelView,
+    name: 'Toasterei Wheel Spin',
+    path: '/toasterei-wheel-spin',
+  },
+  {
+    component: TrackmaniaTrackProgressView,
+    name: 'Trackmania Track Progress Component',
+    path: '/tm-track-progress',
+  },
+  {
     component: TwitchCallbackView,
     name: 'Twitch Callback',
     path: '/twitch/callback',
@@ -109,10 +120,5 @@ export const routes: RouteRecordRaw[] = [
     component: WebcamView,
     name: 'Webcam Component',
     path: '/webcam',
-  },
-  {
-    component: ToastereiWheelView,
-    name: 'Toasterei Wheel Spin',
-    path: '/toasterei-wheel-spin',
   },
 ];
