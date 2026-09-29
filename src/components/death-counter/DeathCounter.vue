@@ -1,11 +1,14 @@
 <template>
   <Transition name="slide-up-and-fade">
     <div v-show="enabled">
-      <template v-if="category === 'Escape from Duckov'">
-        <EscapeFromDuckovDeathCounter :count />
-      </template>
       <template v-if="category === 'Crysis Remastered'">
         <CrysisRemasteredDeathCounter :count />
+      </template>
+      <template v-if="category === 'Crysis Warhead'">
+        <CrysisWarheadDeathCounter :count />
+      </template>
+      <template v-if="category === 'Escape from Duckov'">
+        <EscapeFromDuckovDeathCounter :count />
       </template>
     </div>
   </Transition>
@@ -20,6 +23,7 @@ import RequestCache from '@/services/request-cache.service';
 import { useTwitchStore } from '@/stores/twitch.store';
 import EscapeFromDuckovDeathCounter from './games/EscapeFromDuckovDeathCounter.vue';
 import CrysisRemasteredDeathCounter from '@/components/death-counter/games/CrysisRemasteredDeathCounter.vue'
+import CrysisWarheadDeathCounter from '@/components/death-counter/games/CrysisWarheadDeathCounter.vue'
 
 const twitchStore = useTwitchStore();
 const { category } = storeToRefs(twitchStore);

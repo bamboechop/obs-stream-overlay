@@ -6,6 +6,13 @@ export const TRAILERS_METADATA = {
       youtubeUrl: 'https://www.youtube.com/watch?v=u6gsOQ8HZAU',
     },
   ],
+  'Crysis Warhead': [
+    {
+      title: 'Crysis Warhead - Story Trailer (Official)',
+      url: '/trailers/crysis-warhead.mp4',
+      youtubeUrl: 'https://www.youtube.com/watch?v=5MSMVT4cb0c',
+    },
+  ],
   'Escape from Duckov': [
     {
       title: 'Escape From Duckov - Official Launch Trailer',
