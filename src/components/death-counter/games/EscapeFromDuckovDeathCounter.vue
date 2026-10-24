@@ -9,7 +9,7 @@
         class="drop-shadow-[3px_3px_0_rgba(0,0,0,0.25)]"
         :size="44" />
       <span class="pt-2.5 text-shadow-[3px_3px_0_rgba(0,0,0,0.25)]">
-        Guenther starb bislang <span class="relative after:bg-white/80 after:rounded-full after:bottom-0 after:shadow-[3px_3px_0_rgba(0,0,0,0.25)] after:content-[''] after:h-1 after:left-0 after:absolute after:w-full">{{ count }}</span> Mal
+        ? starb bislang <span class="relative after:bg-white/80 after:rounded-full after:bottom-0 after:shadow-[3px_3px_0_rgba(0,0,0,0.25)] after:content-[''] after:h-1 after:left-0 after:absolute after:w-full">{{ count }}</span> Mal
       </span>
     </div>
     <DiedAgain />
