@@ -42,8 +42,8 @@ export const GAME_METADATA: Record<string, Partial<{ backgroundImagePath: string
     intermissionTextMode: 'default',
   },
   'Escape from Duckov': {
-    backgroundImagePath: '/modern/game-backgrounds/escape-from-duckov.jpg',
-    color: 'rgba(245, 145, 15, 0.625)',
+    backgroundImagePath: '/modern/game-backgrounds/escape-from-duckov-fpc.jpg',
+    color: 'rgba(124, 29, 133, 0.625)',
     iconPath: '/modern/programs/escape-from-duckov.icon.png',
     intermissionTextMode: 'default',
   },
