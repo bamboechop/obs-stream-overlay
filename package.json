@@ -18,7 +18,7 @@
   "dependencies": {
     "@atproto/api": "^0.29.4",
     "@hiseb/confetti": "^2.2.0",
-    "@lucide/vue": "^1.61.0",
+    "@lucide/vue": "^1.65.0",
     "@splidejs/vue-splide": "^0.6.12",
     "@tailwindcss/vite": "^4.3.3",
     "@vueuse/core": "^15.0.0",
