@@ -54,4 +54,16 @@ export const TRAILERS_METADATA = {
       youtubeUrl: 'https://www.youtube.com/watch?v=voabt1Y3tmY',
     },
   ],
+  'Wardogs': [
+      {
+          title: 'WARDOGS | Gameplay Trailer',
+          url: '/trailers/wardogs-gameplay-trailer.mp4',
+          youtubeUrl: 'https://www.youtube.com/watch?v=v1ISv_h_qXY',
+      },
+      {
+          title: 'WARDOGS | Launch Trailer',
+          url: '/trailers/wardogs-launch-trailer.mp4',
+          youtubeUrl: 'https://www.youtube.com/watch?v=CpQnZgZCIo8',
+      },
+  ],
 } as const;
