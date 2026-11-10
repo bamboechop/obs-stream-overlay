@@ -38,16 +38,11 @@ export const TRAILERS_METADATA = {
     },
   ],
   'Trackmania': [
-    /* {
+    {
       title: 'Trackmania Gameplay Trailer',
       url: '/trailers/trackmania-gameplay-trailer.mp4',
       youtubeUrl: 'https://www.youtube.com/watch?v=yjmzsOOrEnQ',
     },
-    {
-      title: 'Trackmania Summer 2026 ',
-      url: '/trailers/trackmania-summer-season-2026.mp4',
-      youtubeUrl: 'https://www.youtube.com/watch?v=sNT8XU5DcqA',
-    }, */
     {
       title: 'Trackmania Fall 2026 ',
       url: '/trailers/trackmania-fall-season-2026.mp4',
