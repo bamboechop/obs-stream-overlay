@@ -122,7 +122,7 @@ export const GAME_METADATA: Record<string, Partial<{ backgroundImagePath: string
     iconPath: '/modern/programs/vein.icon.png',
     intermissionTextMode: 'default',
   },
-  'Wardogs': {
+  'WARDOGS': {
       backgroundImagePath: '/modern/game-backgrounds/wardogs.jpg',
       color: 'rgba(36, 23, 15, 0.75)',
       iconPath: '/modern/programs/wardogs.icon.png',
