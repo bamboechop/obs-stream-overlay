@@ -2,6 +2,7 @@
   <Webcam
     :active
     :aspect-ratio="webcamAspectRatio"
+    :size="webcamSize"
     :title />
 </template>
 
@@ -12,7 +13,7 @@ import Webcam from '@/components/webcam/Webcam.vue';
 import { useSearchParamsComposable } from '@/composables/search-params.composable';
 import { useApplicationStore } from '@/stores/application.store';
 
-const { title, webcamAspectRatio } = useSearchParamsComposable();
+const { title, webcamAspectRatio, webcamSize } = useSearchParamsComposable();
 
 const applicationStore = useApplicationStore();
 const { activeProgramId } = storeToRefs(applicationStore);

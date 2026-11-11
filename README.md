@@ -1,5 +1,17 @@
 # obs-stream-overlay
 
+## Webcam aspect ratio
+
+Set `webcam-aspect-ratio` in the webcam URL, for example
+`/webcam?webcam-aspect-ratio=17:15`. Any positive width-to-height ratio is
+supported using `:` or `/` (such as `17:15` or `17/15`), or a positive decimal
+value (such as `1.5`). The default is `16:9`; invalid values also use this default.
+
+For an exact outer size including the border and bottom title bar, use
+`/webcam?webcam-size=340x300`. The webcam area fills the remaining space, overriding
+the aspect ratio. With the standard 5px borders and 28px title bar, this leaves a
+330x262 webcam area. Invalid sizes fall back to aspect-ratio sizing.
+
 ## Trackmania DataSender bridge
 
 Run `npm run datasender` alongside the overlay. This standalone Node service connects

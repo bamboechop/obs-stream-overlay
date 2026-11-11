@@ -15,7 +15,7 @@
         </div>
       </template>
       <div
-        class="items-center flex font-bold justify-between pt-1 pl-2 transition-colors duration-500 ease-in-out rounded-b-[3px]"
+        class="items-center flex shrink-0 font-bold justify-between pt-1 pl-2 transition-colors duration-500 ease-in-out rounded-b-[3px]"
         :class="[active ? 'bg-[rgba(170,204,0,0.75)]' : 'bg-white/75']">
         {{ title }}
         <div class="flex flex-row gap-1.5 p-1">
