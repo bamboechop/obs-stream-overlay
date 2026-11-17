@@ -31,7 +31,6 @@ defineProps<{ count: number }>();
 .crysis-panel {
   --cut-size: 12px;
   --edge-width: 5px;
-  --gax: #736761;
   --edge-color: rgb(128 54 48 / 0.8);
 
   position: relative;

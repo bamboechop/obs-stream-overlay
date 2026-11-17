@@ -13,6 +13,13 @@ export const TRAILERS_METADATA = {
       youtubeUrl: 'https://www.youtube.com/watch?v=5MSMVT4cb0c',
     },
   ],
+  'Crysis 2 Remastered': [
+    {
+      title: 'Crysis 2 Remastered - Official PC, PlayStation 4 & Xbox One Launch Trailer',
+      url: '/trailers/crysis-2-remastered-launch-trailer.mp4',
+      youtubeUrl: 'https://www.youtube.com/watch?v=njoqC5OJA0U',
+    },
+  ],
   'Escape from Duckov': [
     {
       title: 'Escape From Duckov - Official Launch Trailer',

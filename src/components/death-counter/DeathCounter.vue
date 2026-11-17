@@ -7,6 +7,9 @@
       <template v-if="category === 'Crysis Warhead'">
         <CrysisWarheadDeathCounter :count />
       </template>
+      <template v-if="category === 'Crysis 2 Remastered'">
+        <Crysis2RemasteredDeathCounter :count />
+      </template>
       <template v-if="category === 'Escape from Duckov'">
         <EscapeFromDuckovDeathCounter :count />
       </template>
@@ -24,6 +27,7 @@ import { useTwitchStore } from '@/stores/twitch.store';
 import EscapeFromDuckovDeathCounter from './games/EscapeFromDuckovDeathCounter.vue';
 import CrysisRemasteredDeathCounter from '@/components/death-counter/games/CrysisRemasteredDeathCounter.vue'
 import CrysisWarheadDeathCounter from '@/components/death-counter/games/CrysisWarheadDeathCounter.vue'
+import Crysis2RemasteredDeathCounter from '@/components/death-counter/games/Crysis2RemasteredDeathCounter.vue'
 
 const twitchStore = useTwitchStore();
 const { category } = storeToRefs(twitchStore);
